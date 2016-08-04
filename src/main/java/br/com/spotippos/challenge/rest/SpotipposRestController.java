@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by mtzcpd663 on 04/08/2016.
  */
 @RestController
-@RequestMapping("/")
+@RequestMapping
 public class SpotipposRestController {
 
     @RequestMapping(method = RequestMethod.GET)
