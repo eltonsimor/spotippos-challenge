@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/spottipos-challenge-1.0.0.jar
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/spotippos-challenge-1.0.0.jar
