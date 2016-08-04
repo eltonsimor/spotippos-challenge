@@ -1,20 +1,3 @@
 .idea/
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 *.iml
-<<<<<<< HEAD
 build/
-.gradle/
-=======
-*.iml
->>>>>>> parent of a12989a... Alterando o gitignore removendo a pasta build
-=======
-*.iml
->>>>>>> parent of a12989a... Alterando o gitignore removendo a pasta build
-=======
-*.iml
->>>>>>> parent of a12989a... Alterando o gitignore removendo a pasta build
-=======
-build/
->>>>>>> parent of 23ffcab... Removendo a pasta gradle e colocando no gitignore
