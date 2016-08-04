@@ -9,12 +9,21 @@ import java.util.List;
 public class PropertyDTO implements Serializable {
     private static final long serialVersionUID = 7019892482970351093L;
 
+    private int id;
     private long x;
     private long y;
     private int beds;
     private int baths;
     private long squareMeters;
     private List<ProvinceDTO> provinces;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public long getX() {
         return x;
