@@ -1,4 +1,8 @@
 .idea/
+<<<<<<< HEAD
 *.iml
 build/
 .gradle/
+=======
+*.iml
+>>>>>>> parent of a12989a... Alterando o gitignore removendo a pasta build
