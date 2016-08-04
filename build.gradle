@@ -1,12 +1,49 @@
+buildscript{
+    repositories{
+        mavenCentral()
+    }
+    dependencies{
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+    }
+}
+
 apply plugin: 'java'
+apply plugin: 'spring-boot'
+apply plugin: 'idea'
 
-sourceCompatibility = 1.5
-version = '1.0'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
-repositories {
+jar{
+    baseName = 'spotippos-challenge'
+    version = '1.0.0'
+}
+
+repositories{
     mavenCentral()
 }
 
-dependencies {
+dependencies{
+    //tag::jetty[]
+    compile("org.springframework.boot:spring-boot-starter-web"){
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    //end::jetty[]
+
+    //tag::actuator[]
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    //end::actuator[]
+
+    //tag::junit[]
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    //end::junit[]
+}
+
+task wrapper(type: Wrapper){
+    gradleVersion = "2.13"
+}
+
+task stage{
+    dependsOn build
 }
