@@ -15,4 +15,6 @@ public class SpotipposRestController {
     public String hello(){
         return "Hello Spotippos";
     }
+
+    
 }
