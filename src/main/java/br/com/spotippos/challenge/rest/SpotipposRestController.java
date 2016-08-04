@@ -16,5 +16,5 @@ public class SpotipposRestController {
         return "Hello Spotippos";
     }
 
-    
+
 }
