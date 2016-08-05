@@ -6,7 +6,7 @@ import org.dozer.Mapper;
 /**
  * Created by mtzcpd663 on 05/08/2016.
  */
-public abstract class ConverterClazz {
+public abstract class Converter {
 
     public static <T> T convertTo(Object source, Class<T> destinationClazz){
         Mapper mapper = new DozerBeanMapper();

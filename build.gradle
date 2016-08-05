@@ -38,7 +38,8 @@ dependencies{
     //end::commons[]
 
     //tag::tests[]
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile("junit:junit:4.11")
+    testCompile("org.mockito:mockito-core:1.+")
     //end::tests[]
 }
 
