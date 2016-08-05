@@ -28,8 +28,17 @@ public class SpotipposRestController {
             produces = "application/json"
     )
     public PropertyResponse saveProperty(@Valid PropertyRequest rq){
+        PropertyResponse response = new PropertyResponse();
+        response.setBaths(rq.getBaths());
+        response.setBeds(rq.getBeds());
+        response.setDescription(rq.getDescription());
+        response.setPrice(rq.getPrice());
+        response.setSquareMeters(rq.getSquareMeters());
+        response.setTitle(rq.getTitle());
+        response.setX(rq.getX());
+        response.setY(rq.getY());
 
-        return null;
+        return response;
     }
 
 

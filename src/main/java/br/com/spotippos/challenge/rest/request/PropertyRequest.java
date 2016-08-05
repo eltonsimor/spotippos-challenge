@@ -19,7 +19,7 @@ public class PropertyRequest implements Serializable {
     private long x;
 
     @NotNull(message = "{y.notnull}")
-@Min(value = 0, message = "{y.min}")
+    @Min(value = 0, message = "{y.min}")
     @Max(value = 1000, message = "{y.max}")
     private long y;
     private String title;
