@@ -30,7 +30,7 @@ public class SpotipposServiceImpl implements SpotipposService {
         return property;
     }
 
-    private int getPropertyID(){
+    private long getPropertyID(){
         return properties.isEmpty() ? 1 : properties.get(properties.size() - 1).getId() + 1;
     }
 
