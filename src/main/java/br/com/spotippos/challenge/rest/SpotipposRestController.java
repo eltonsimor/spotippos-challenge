@@ -29,7 +29,7 @@ public class SpotipposRestController {
             produces = "application/json"
     )
     public PropertyResponse saveProperty(@Valid
-                                        @RequestBody
+                                         @RequestBody
                                          PropertyRequest rq){
         PropertyResponse response = new PropertyResponse();
         response.setBaths(rq.getBaths());
