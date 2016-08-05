@@ -1,5 +1,6 @@
 package br.com.spotippos.challenge.rest;
 
+import br.com.spotippos.challenge.config.ConverterClazz;
 import br.com.spotippos.challenge.rest.request.PropertyRequest;
 import br.com.spotippos.challenge.rest.response.PropertyResponse;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,15 +32,8 @@ public class SpotipposRestController {
     public PropertyResponse saveProperty(@Valid
                                          @RequestBody
                                          PropertyRequest rq){
-        PropertyResponse response = new PropertyResponse();
-        response.setBaths(rq.getBaths());
-        response.setBeds(rq.getBeds());
-        response.setDescription(rq.getDescription());
-        response.setPrice(rq.getPrice());
-        response.setSquareMeters(rq.getSquareMeters());
-        response.setTitle(rq.getTitle());
-        response.setX(rq.getX());
-        response.setY(rq.getY());
+
+        PropertyResponse response = ConverterClazz.convertTo(rq, PropertyResponse.class);
 
         return response;
     }
