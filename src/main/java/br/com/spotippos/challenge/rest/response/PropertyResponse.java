@@ -2,6 +2,7 @@ package br.com.spotippos.challenge.rest.response;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by eltonmoraes on 04/08/16.
@@ -92,8 +93,8 @@ public class PropertyResponse implements Serializable{
         this.squareMeters = squareMeters;
     }
 
-    public List<ProvinceResponse> getProvinces() {
-        return provinces;
+    public List<String> getProvinces() {
+        return provinces.stream().map(p -> p.getName()).collect(Collectors.toList());
     }
 
     public void setProvinces(List<ProvinceResponse> provinces) {

@@ -24,23 +24,17 @@ repositories{
 }
 
 dependencies{
-    //tag::spring[]
+
     compile("org.springframework.boot:spring-boot-starter-web"){
         exclude module: "spring-boot-starter-tomcat"
     }
     compile("org.springframework.boot:spring-boot-starter-jetty")
     compile("org.springframework.boot:spring-boot-starter-actuator")
-    //end::spring[]
-
-    //tag::commons[]
     compile("javax:javaee-api:7.0")
     compile("net.sf.dozer:dozer:5.5.1")
-    //end::commons[]
 
-    //tag::tests[]
     testCompile("junit:junit:4.11")
     testCompile("org.mockito:mockito-core:1.+")
-    //end::tests[]
 }
 
 task wrapper(type: Wrapper){

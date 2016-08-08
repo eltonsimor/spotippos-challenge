@@ -93,9 +93,9 @@ public class SpotipposServiceImpl implements SpotipposService {
 
         bottomRightRuja.setX(1100L);
         bottomRightRuja.setY(500L);
-        boundariesRuja.setBottomRight(bottomRightGode);
-        boundariesRuja.setUpperLeft(uppperleftGode);
-        ruja.setBoundaries(boundariesGode);
+        boundariesRuja.setBottomRight(bottomRightRuja);
+        boundariesRuja.setUpperLeft(uppperleftRuja);
+        ruja.setBoundaries(boundariesRuja);
 
 
         ProvinceDTO scavy = new ProvinceDTO();
@@ -109,9 +109,9 @@ public class SpotipposServiceImpl implements SpotipposService {
 
         bottomRightScavy.setX(600L);
         bottomRightScavy.setY(0L);
-        boundariesScavy.setBottomRight(bottomRightGode);
-        boundariesScavy.setUpperLeft(uppperleftGode);
-        scavy.setBoundaries(boundariesGode);
+        boundariesScavy.setBottomRight(bottomRightScavy);
+        boundariesScavy.setUpperLeft(uppperleftScavy);
+        scavy.setBoundaries(boundariesScavy);
 
 
         ProvinceDTO groola = new ProvinceDTO();
@@ -125,9 +125,9 @@ public class SpotipposServiceImpl implements SpotipposService {
 
         bottomRightGroola.setX(800L);
         bottomRightGroola.setY(0L);
-        boundariesGroola.setBottomRight(bottomRightGode);
-        boundariesGroola.setUpperLeft(uppperleftGode);
-        groola.setBoundaries(boundariesGode);
+        boundariesGroola.setBottomRight(bottomRightGroola);
+        boundariesGroola.setUpperLeft(uppperleftGroola);
+        groola.setBoundaries(boundariesGroola);
 
 
         ProvinceDTO jaby = new ProvinceDTO();
@@ -141,9 +141,9 @@ public class SpotipposServiceImpl implements SpotipposService {
 
         bottomRightJaby.setX(1400L);
         bottomRightJaby.setY(500L);
-        boundariesJaby.setBottomRight(bottomRightGode);
-        boundariesJaby.setUpperLeft(uppperleftGode);
-        jaby.setBoundaries(boundariesGode);
+        boundariesJaby.setBottomRight(bottomRightJaby);
+        boundariesJaby.setUpperLeft(uppperleftJaby);
+        jaby.setBoundaries(boundariesJaby);
 
 
         ProvinceDTO nova = new ProvinceDTO();
@@ -157,9 +157,9 @@ public class SpotipposServiceImpl implements SpotipposService {
 
         bottomRightNova.setX(1400L);
         bottomRightNova.setY(500L);
-        boundariesNova.setBottomRight(bottomRightGode);
-        boundariesNova.setUpperLeft(uppperleftGode);
-        nova.setBoundaries(boundariesGode);
+        boundariesNova.setBottomRight(bottomRightNova);
+        boundariesNova.setUpperLeft(uppperleftNova);
+        nova.setBoundaries(boundariesNova);
 
 
         saveProvince(gode);
