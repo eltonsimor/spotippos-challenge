@@ -8,7 +8,10 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by mtzcpd663 on 04/08/2016.
  */
-@SpringBootApplication(scanBasePackages = {"br.com.spotippos.challenge.rest"})
+@SpringBootApplication(scanBasePackages = {
+        "br.com.spotippos.challenge.rest",
+        "br.com.spotippos.challenge.service"
+})
 @EnableAutoConfiguration
 @Configuration
 public class Application {

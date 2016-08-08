@@ -1,6 +1,7 @@
 package br.com.spotippos.challenge.rest.response;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by eltonmoraes on 04/08/16.
@@ -17,6 +18,7 @@ public class PropertyResponse implements Serializable{
     private int beds;
     private int baths;
     private long squareMeters;
+    private List<ProvinceResponse> provinces;
 
     public long getId() {
         return id;
@@ -88,5 +90,13 @@ public class PropertyResponse implements Serializable{
 
     public void setSquareMeters(long squareMeters) {
         this.squareMeters = squareMeters;
+    }
+
+    public List<ProvinceResponse> getProvinces() {
+        return provinces;
+    }
+
+    public void setProvinces(List<ProvinceResponse> provinces) {
+        this.provinces = provinces;
     }
 }
