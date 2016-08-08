@@ -3,6 +3,11 @@ package br.com.spotippos.challenge.rest;
 import br.com.spotippos.challenge.config.Converter;
 import br.com.spotippos.challenge.rest.request.PropertyRequest;
 import br.com.spotippos.challenge.rest.response.PropertyResponse;
+import br.com.spotippos.challenge.service.SpotipposService;
+import br.com.spotippos.challenge.service.dto.PropertyDTO;
+import br.com.spotippos.challenge.service.impl.SpotipposServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +21,9 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping
 public class SpotipposRestController {
+
+    @Autowired
+    private SpotipposService spotipposService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String hello(){
@@ -33,10 +41,17 @@ public class SpotipposRestController {
                                          @RequestBody
                                          PropertyRequest rq){
 
-        PropertyResponse response = Converter.convertTo(rq, PropertyResponse.class);
+        PropertyDTO property = Converter.convertTo(rq, PropertyDTO.class);
+        PropertyDTO dto = spotipposService.saveProperty(property);
+
+        PropertyResponse response = Converter.convertTo(dto, PropertyResponse.class);
+
+
 
         return response;
     }
+
+
 
 
 }
