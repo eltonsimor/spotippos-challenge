@@ -18,5 +18,4 @@ public interface SpotipposService extends Serializable{
 
     ProvinceDTO saveProvince(ProvinceDTO province);
 
-    long getPropertyID();
 }

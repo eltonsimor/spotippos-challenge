@@ -60,8 +60,7 @@ public class SpotipposServiceImpl implements SpotipposService {
         return province;
     }
 
-    @Override
-    public long getPropertyID(){
+    private long getPropertyID(){
         return properties.isEmpty() ? 1 : properties.get(properties.size() - 1).getId() + 1;
     }
 
