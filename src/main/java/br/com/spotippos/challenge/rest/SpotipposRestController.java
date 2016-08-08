@@ -46,8 +46,6 @@ public class SpotipposRestController {
 
         PropertyResponse response = Converter.convertTo(dto, PropertyResponse.class);
 
-
-
         return response;
     }
 
