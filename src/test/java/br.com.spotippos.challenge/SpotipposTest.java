@@ -9,6 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 
+import java.util.List;
+
 import static org.mockito.Mockito.*;
 
 
@@ -30,6 +32,54 @@ public class SpotipposTest {
     @Before
     public void init(){
         loadProvinces();
+    }
+
+    @Test
+    public final void getProvinceGode(){
+        List<ProvinceDTO> provinces = spotipposService.findProvinces(399, 1000);
+
+        Assert.assertEquals(provinces.size(), 1, 0);
+        Assert.assertEquals(provinces.get(0).getName(), GODE);
+    }
+
+    @Test
+    public final void getProvinceRuja(){
+        List<ProvinceDTO> provinces = spotipposService.findProvinces(601, 1000);
+
+        Assert.assertEquals(provinces.size(), 1, 0);
+        Assert.assertEquals(provinces.get(0).getName(), RUJA);
+    }
+
+    @Test
+    public final void getProvinceJaby(){
+        List<ProvinceDTO> provinces = spotipposService.findProvinces(1101, 1000);
+
+        Assert.assertEquals(provinces.size(), 1, 0);
+        Assert.assertEquals(provinces.get(0).getName(), JABY);
+    }
+
+    @Test
+    public final void getProvinceScavy(){
+        List<ProvinceDTO> provinces = spotipposService.findProvinces(0, 0);
+
+        Assert.assertEquals(provinces.size(), 1, 0);
+        Assert.assertEquals(provinces.get(0).getName(), SCAVY);
+    }
+
+    @Test
+    public final void getProvinceGroola(){
+        List<ProvinceDTO> provinces = spotipposService.findProvinces(601, 0);
+
+        Assert.assertEquals(provinces.size(), 1, 0);
+        Assert.assertEquals(provinces.get(0).getName(), GROOLA);
+    }
+
+    @Test
+    public final void getProvinceNova(){
+        List<ProvinceDTO> provinces = spotipposService.findProvinces(801, 0);
+
+        Assert.assertEquals(provinces.size(), 1, 0);
+        Assert.assertEquals(provinces.get(0).getName(), NOVA);
     }
 
 
