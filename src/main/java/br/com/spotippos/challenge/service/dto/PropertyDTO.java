@@ -1,5 +1,7 @@
 package br.com.spotippos.challenge.service.dto;
 
+import org.dozer.Mapping;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,7 +12,9 @@ public class PropertyDTO implements Serializable {
     private static final long serialVersionUID = 7019892482970351093L;
 
     private long id;
+    @Mapping("lat")
     private long x;
+    @Mapping("long")
     private long y;
     private int beds;
     private int baths;

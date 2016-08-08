@@ -5,6 +5,7 @@ import br.com.spotippos.challenge.rest.request.PropertyRequest;
 import br.com.spotippos.challenge.rest.response.PropertyResponse;
 import br.com.spotippos.challenge.service.SpotipposService;
 import br.com.spotippos.challenge.service.dto.PropertyDTO;
+import br.com.spotippos.challenge.service.dto.ProvinceDTO;
 import br.com.spotippos.challenge.service.impl.SpotipposServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -47,6 +48,16 @@ public class SpotipposRestController {
         PropertyResponse response = Converter.convertTo(dto, PropertyResponse.class);
 
         return response;
+    }
+
+    @RequestMapping(
+            value = "/json",
+            method = RequestMethod.POST,
+            consumes = "application/json",
+            produces = "application/json"
+    )
+    public PropertyDTO json(@RequestBody PropertyDTO rq){
+        return rq;
     }
 
 
