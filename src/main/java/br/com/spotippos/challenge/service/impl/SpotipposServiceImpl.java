@@ -38,7 +38,7 @@ public class SpotipposServiceImpl implements SpotipposService {
         List<ProvinceDTO> provinces = this.provinces.stream()
                 .filter(p ->
                         p.getBoundaries().getUpperLeft().getX() <= x && x <= p.getBoundaries().getBottomRight().getX() &&
-                        p.getBoundaries().getUpperLeft().getY() <= y && y <= p.getBoundaries().getBottomRight().getY()
+                        p.getBoundaries().getBottomRight().getY() <= y && y <= p.getBoundaries().getUpperLeft().getY()
                 )
                 .collect(Collectors.toList());
 
