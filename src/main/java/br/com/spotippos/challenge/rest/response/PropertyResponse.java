@@ -1,7 +1,10 @@
 package br.com.spotippos.challenge.rest.response;
 
+import org.dozer.Mapping;
+
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by eltonmoraes on 04/08/16.
@@ -18,6 +21,7 @@ public class PropertyResponse implements Serializable{
     private int beds;
     private int baths;
     private long squareMeters;
+    @Mapping("provinces")
     private List<ProvinceResponse> provinces;
 
     public long getId() {
@@ -92,8 +96,8 @@ public class PropertyResponse implements Serializable{
         this.squareMeters = squareMeters;
     }
 
-    public List<ProvinceResponse> getProvinces() {
-        return provinces;
+    public List<String> getProvinces() {
+        return provinces.stream().map(p -> p.getName()).collect(Collectors.toList());
     }
 
     public void setProvinces(List<ProvinceResponse> provinces) {

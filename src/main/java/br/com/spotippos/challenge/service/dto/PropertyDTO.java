@@ -18,6 +18,7 @@ public class PropertyDTO implements Serializable {
     private String title;
     private String description;
     private double price;
+
     private List<ProvinceDTO> provinces;
 
     public long getId() {
