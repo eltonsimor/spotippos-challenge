@@ -1,5 +1,7 @@
 package br.com.spotippos.challenge.rest.response;
 
+import org.dozer.Mapping;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +21,7 @@ public class PropertyResponse implements Serializable{
     private int beds;
     private int baths;
     private long squareMeters;
+    @Mapping("provinces")
     private List<ProvinceResponse> provinces;
 
     public long getId() {
