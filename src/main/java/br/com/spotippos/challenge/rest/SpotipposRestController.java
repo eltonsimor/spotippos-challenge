@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 
 /**
@@ -37,9 +36,10 @@ public class SpotipposRestController {
             consumes = "application/json",
             produces = "application/json"
     )
-    public <Response extends Serializable> Response saveProperty(@Valid
-                                         @RequestBody
-                                         PropertyRequest rq){
+    public <Response> Response saveProperty(
+             @Valid
+             @RequestBody
+             PropertyRequest rq){
         Response response;
         try {
             PropertyDTO property = Converter.convertTo(rq, PropertyDTO.class);
@@ -57,10 +57,12 @@ public class SpotipposRestController {
             method = RequestMethod.GET,
             produces = "application/json"
     )
-    public <Response extends Serializable> Response findPropertyByID(@PathVariable("id")
-                                             @Min(value = 0, message = "{id.min}")
-                                             @NotNull(message = "{id.notnull}")
-                                             long id){
+    public <Response> Response findPropertyByID(
+            @PathVariable("id")
+            @Min(value = 0, message = "{id.min}")
+            @NotNull(message = "{id.notnull}")
+            long id){
+
         Response response;
         try {
             PropertyDTO property = spotipposService.findPropertyByID(id);
