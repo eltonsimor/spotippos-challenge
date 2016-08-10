@@ -7,11 +7,11 @@ import br.com.spotippos.challenge.service.impl.SpotipposServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 
 import java.util.List;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
 
 /**
@@ -163,8 +163,6 @@ public class SpotipposTest {
                 dto.getProvinces().get(0).getBoundaries().getUpperLeft().getX(), 0);
         Assert.assertEquals(propertyByID.getProvinces().get(0).getBoundaries().getUpperLeft().getY(),
                 dto.getProvinces().get(0).getBoundaries().getUpperLeft().getY(), 0);
-
-
     }
 
     private PropertyDTO mockPropertyInGode() {
