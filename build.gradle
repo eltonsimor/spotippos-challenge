@@ -36,8 +36,9 @@ dependencies{
 
     compile("com.google.code.gson:gson:2.7")
 
-    testCompile("junit:junit:4.11")
+    testCompile("junit:junit:4.12")
     testCompile("org.mockito:mockito-core:1.+")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 task wrapper(type: Wrapper){
