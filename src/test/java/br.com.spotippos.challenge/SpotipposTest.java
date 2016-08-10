@@ -19,8 +19,7 @@ import static org.mockito.Mockito.*;
  */
 public class SpotipposTest {
 
-    @InjectMocks
-    private SpotipposService spotipposService = new SpotipposServiceImpl();
+    private SpotipposService spotipposService;
 
     private final static String GODE = "Gode";
     private final static String RUJA = "Ruja";
@@ -31,6 +30,7 @@ public class SpotipposTest {
 
     @Before
     public void init(){
+        spotipposService = new SpotipposServiceImpl();
         loadProvinces();
     }
 
@@ -138,6 +138,33 @@ public class SpotipposTest {
         Assert.assertEquals(property.getProvinces().get(0).getName(), RUJA);
         Assert.assertEquals(property.getProvinces().get(1).getName(), JABY);
         Assert.assertEquals(property.getProvinces().get(2).getName(), NOVA);
+    }
+
+    @Test
+    public final void getPropertyByID(){
+        PropertyDTO dto = mockPropertyInGode();
+        spotipposService.saveProperty(dto);
+        PropertyDTO propertyByID = spotipposService.findPropertyByID(1L);
+
+        Assert.assertEquals(propertyByID.getId(), 1, 0);
+        Assert.assertEquals(propertyByID.getDescription(), dto.getDescription());
+        Assert.assertEquals(propertyByID.getTitle(), dto.getTitle());
+        Assert.assertEquals(propertyByID.getBaths(), dto.getBaths(), 0);
+        Assert.assertEquals(propertyByID.getBeds(), dto.getBeds(), 0);
+        Assert.assertEquals(propertyByID.getPrice(), dto.getPrice(), 0);
+        Assert.assertEquals(propertyByID.getSquareMeters(), dto.getSquareMeters(), 0);
+        Assert.assertEquals(propertyByID.getProvinces().size(), dto.getProvinces().size(), 0);
+        Assert.assertEquals(propertyByID.getProvinces().get(0).getName(), dto.getProvinces().get(0).getName());
+        Assert.assertEquals(propertyByID.getProvinces().get(0).getBoundaries().getBottomRight().getX(),
+                dto.getProvinces().get(0).getBoundaries().getBottomRight().getX(), 0);
+        Assert.assertEquals(propertyByID.getProvinces().get(0).getBoundaries().getBottomRight().getY(),
+                dto.getProvinces().get(0).getBoundaries().getBottomRight().getY(), 0);
+        Assert.assertEquals(propertyByID.getProvinces().get(0).getBoundaries().getUpperLeft().getX(),
+                dto.getProvinces().get(0).getBoundaries().getUpperLeft().getX(), 0);
+        Assert.assertEquals(propertyByID.getProvinces().get(0).getBoundaries().getUpperLeft().getY(),
+                dto.getProvinces().get(0).getBoundaries().getUpperLeft().getY(), 0);
+
+
     }
 
     private PropertyDTO mockPropertyInGode() {
