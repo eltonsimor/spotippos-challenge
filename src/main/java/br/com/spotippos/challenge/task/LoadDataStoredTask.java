@@ -55,7 +55,7 @@ public class LoadDataStoredTask {
         Map<String, Object> mapProvinces = gson.parseMap(json);
 
         mapProvinces.entrySet()
-                .parallelStream()
+                .stream()
                 .forEach(p -> {
                     String nameProvince = p.getKey();
                     ProvinceDTO province = Converter.convertTo(p.getValue(), ProvinceDTO.class);
@@ -79,7 +79,7 @@ public class LoadDataStoredTask {
 
         List properties = (ArrayList) mapProperties.get("properties");
 
-        properties.parallelStream().forEach(p -> {
+        properties.stream().forEach(p -> {
             PropertyDTO property = Converter.convertTo(p, PropertyDTO.class);
             spotipposService.saveProperty(property);
         });
