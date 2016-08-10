@@ -8,8 +8,13 @@ import org.dozer.Mapper;
  */
 public abstract class Converter {
 
+    private final static Mapper mapper;
+
+    static {
+        mapper = new DozerBeanMapper();
+    }
+
     public static <T> T convertTo(Object source, Class<T> destinationClazz){
-        Mapper mapper = new DozerBeanMapper();
         return mapper.map(source, destinationClazz);
     }
 

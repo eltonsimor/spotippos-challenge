@@ -16,6 +16,9 @@ public interface SpotipposService extends Serializable{
 
     List<ProvinceDTO> findProvinces(long x, long y);
 
+    PropertyDTO findPropertyByID(long id);
+
     ProvinceDTO saveProvince(ProvinceDTO province);
 
+    List<ProvinceDTO> getAllProvinces();
 }
