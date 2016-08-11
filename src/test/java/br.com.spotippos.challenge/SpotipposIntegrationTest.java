@@ -1,7 +1,7 @@
 package br.com.spotippos.challenge;
 
 import br.com.spotippos.challenge.config.Application;
-import br.com.spotippos.challenge.task.LoadDataStoredTask;
+import br.com.spotippos.challenge.task.LoadDataTask;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
@@ -35,7 +35,7 @@ public class SpotipposIntegrationTest {
     private Gson gson;
 
     @Autowired
-    private LoadDataStoredTask task;
+    private LoadDataTask task;
 
     private final static String GODE = "Gode";
     private final static String RUJA = "Ruja";

@@ -6,11 +6,9 @@ import br.com.spotippos.challenge.service.dto.PropertyDTO;
 import br.com.spotippos.challenge.service.dto.ProvinceDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.boot.json.JsonParser;
-import org.springframework.http.converter.json.GsonFactoryBean;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -25,9 +23,9 @@ import java.util.Map;
  * @since 09/08/2016.
  */
 @Component
-public class LoadDataStoredTask {
+public class LoadDataTask {
 
-    private static final Logger LOG = LoggerFactory.getLogger(LoadDataStoredTask.class);
+    private static final Logger LOG = LoggerFactory.getLogger(LoadDataTask.class);
 
     @Autowired
     private SpotipposService spotipposService;
