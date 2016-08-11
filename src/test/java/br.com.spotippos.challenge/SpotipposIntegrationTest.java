@@ -50,7 +50,7 @@ public class SpotipposIntegrationTest {
     }
 
     @Test
-    public void testApplicationItsWorking() throws Exception{
+    public void test_application_its_working() throws Exception{
         ResponseEntity<String> entity = testRestTemplate.getForEntity("/spotippos/", String.class);
 
         assertEquals(HttpStatus.OK, entity.getStatusCode());
@@ -58,7 +58,7 @@ public class SpotipposIntegrationTest {
     }
 
     @Test
-    public void testSaveProperty() throws Exception{
+    public void test_save_property() throws Exception{
         ObjectMapper mapper = new ObjectMapper();
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -89,7 +89,7 @@ public class SpotipposIntegrationTest {
     }
 
     @Test
-    public void testGetPropertyInNova() throws Exception{
+    public void test_get_property_in_nova() throws Exception{
         ResponseEntity<String> entity = testRestTemplate.getForEntity("/spotippos/properties/700", String.class);
         LinkedHashMap response = gson.fromJson(entity.getBody(), LinkedHashMap.class);
 
@@ -108,7 +108,7 @@ public class SpotipposIntegrationTest {
     }
 
     @Test
-    public void testGetPropertyInJaby() throws Exception{
+    public void test_get_property_in_jaby() throws Exception{
         ResponseEntity<String> entity = testRestTemplate.getForEntity("/spotippos/properties/990", String.class);
         LinkedHashMap response = gson.fromJson(entity.getBody(), LinkedHashMap.class);
 
