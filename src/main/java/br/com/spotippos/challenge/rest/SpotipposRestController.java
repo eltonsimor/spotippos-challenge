@@ -70,7 +70,7 @@ public class SpotipposRestController {
             PropertyDTO property = spotipposService.findPropertyByID(id);
             response = (Response) ConverterUtils.convertTo(property, PropertyResponse.class);
         } catch (Exception e) {
-            response = (Response) new ErrorResponse(8888,"Erro ao buscar Propriedade por ID: " + id);
+            response = (Response) new ErrorResponse(8888,"Não foi possível localizar a propriedade pelo o ID: " + id);
         }
 
         return  response;
