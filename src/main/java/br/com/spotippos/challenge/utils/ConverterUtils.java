@@ -1,4 +1,4 @@
-package br.com.spotippos.challenge.config;
+package br.com.spotippos.challenge.utils;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -7,7 +7,7 @@ import org.dozer.Mapper;
  * @author Elton Moraes
  * @since 05/08/2016.
  */
-public abstract class Converter {
+public abstract class ConverterUtils {
 
     private final static Mapper mapper;
 

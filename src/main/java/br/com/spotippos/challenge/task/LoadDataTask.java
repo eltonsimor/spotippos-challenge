@@ -1,6 +1,6 @@
 package br.com.spotippos.challenge.task;
 
-import br.com.spotippos.challenge.config.Converter;
+import br.com.spotippos.challenge.utils.ConverterUtils;
 import br.com.spotippos.challenge.service.SpotipposService;
 import br.com.spotippos.challenge.service.dto.PropertyDTO;
 import br.com.spotippos.challenge.service.dto.ProvinceDTO;
@@ -57,7 +57,7 @@ public class LoadDataTask {
                 .stream()
                 .forEach(p -> {
                     String nameProvince = p.getKey();
-                    ProvinceDTO province = Converter.convertTo(p.getValue(), ProvinceDTO.class);
+                    ProvinceDTO province = ConverterUtils.convertTo(p.getValue(), ProvinceDTO.class);
                     province.setName(nameProvince);
 
                     spotipposService.saveProvince(province);
@@ -79,7 +79,7 @@ public class LoadDataTask {
         List properties = (ArrayList) mapProperties.get("properties");
 
         properties.stream().forEach(p -> {
-            PropertyDTO property = Converter.convertTo(p, PropertyDTO.class);
+            PropertyDTO property = ConverterUtils.convertTo(p, PropertyDTO.class);
             spotipposService.saveProperty(property);
         });
 

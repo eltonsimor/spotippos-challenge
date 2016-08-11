@@ -1,6 +1,6 @@
 package br.com.spotippos.challenge.rest;
 
-import br.com.spotippos.challenge.config.Converter;
+import br.com.spotippos.challenge.utils.ConverterUtils;
 import br.com.spotippos.challenge.rest.request.PropertyRequest;
 import br.com.spotippos.challenge.rest.response.ErrorResponse;
 import br.com.spotippos.challenge.rest.response.PropertyResponse;
@@ -43,9 +43,9 @@ public class SpotipposRestController {
              PropertyRequest rq){
         Response response;
         try {
-            PropertyDTO property = Converter.convertTo(rq, PropertyDTO.class);
+            PropertyDTO property = ConverterUtils.convertTo(rq, PropertyDTO.class);
             PropertyDTO dto = spotipposService.saveProperty(property);
-            response = (Response) Converter.convertTo(dto, PropertyResponse.class);
+            response = (Response) ConverterUtils.convertTo(dto, PropertyResponse.class);
         } catch (Exception e) {
             response = (Response) new ErrorResponse(77777,"Erro ao salvar a propriedade. Verifique o contrato do request.");
         }
@@ -68,7 +68,7 @@ public class SpotipposRestController {
         Response response;
         try {
             PropertyDTO property = spotipposService.findPropertyByID(id);
-            response = (Response) Converter.convertTo(property, PropertyResponse.class);
+            response = (Response) ConverterUtils.convertTo(property, PropertyResponse.class);
         } catch (Exception e) {
             response = (Response) new ErrorResponse(8888,"Erro ao buscar Propriedade por ID");
         }
