@@ -32,7 +32,7 @@ public class LoadDataStoredTask {
     private SpotipposService spotipposService;
 
     @Scheduled(fixedRate = 1000 * 60)
-    public void loadStoredData(){
+    public synchronized void loadStoredData(){
         List<ProvinceDTO> provinces = spotipposService.getAllProvinces();
 
         if(provinces.isEmpty()){

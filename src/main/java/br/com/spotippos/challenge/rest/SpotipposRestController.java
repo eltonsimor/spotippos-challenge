@@ -25,8 +25,8 @@ public class SpotipposRestController {
     private SpotipposService spotipposService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String hello(){
-        return "Hello Spotippos";
+    public String status(){
+        return "Spotippos - Status OK";
     }
 
 

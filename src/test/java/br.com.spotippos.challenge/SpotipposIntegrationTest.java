@@ -1,12 +1,10 @@
 package br.com.spotippos.challenge;
 
 import br.com.spotippos.challenge.config.Application;
-import br.com.spotippos.challenge.service.SpotipposService;
-import br.com.spotippos.challenge.service.dto.BottomRightDTO;
-import br.com.spotippos.challenge.service.dto.BoundariesDTO;
-import br.com.spotippos.challenge.service.dto.ProvinceDTO;
-import br.com.spotippos.challenge.service.dto.UpperLeftDTO;
+import br.com.spotippos.challenge.task.LoadDataStoredTask;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,15 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.MultiValueMap;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 
 
@@ -38,7 +31,10 @@ public class SpotipposIntegrationTest {
     private TestRestTemplate testRestTemplate;
 
     @Autowired
-    private SpotipposService spotipposService;
+    private Gson gson;
+
+    @Autowired
+    private LoadDataStoredTask task;
 
     private final static String GODE = "Gode";
     private final static String RUJA = "Ruja";
@@ -49,7 +45,7 @@ public class SpotipposIntegrationTest {
 
     @Before
     public void init(){
-        loadProvinces();
+        task.loadStoredData();
     }
 
     @Test
@@ -57,7 +53,7 @@ public class SpotipposIntegrationTest {
         ResponseEntity<String> entity = testRestTemplate.getForEntity("/spotippos/", String.class);
 
         assertEquals(HttpStatus.OK, entity.getStatusCode());
-        assertEquals(entity.getBody(), "Hello Spotippos");
+        assertTrue(entity.getBody().contains("OK"));
         assertEquals(entity.getStatusCodeValue(),HttpStatus.OK.value());
     }
 
@@ -68,121 +64,80 @@ public class SpotipposIntegrationTest {
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_JSON);
 
+        Map<String, Object> requestBody =requestPropertyInGodeRujaScavyGroola();
+        HttpEntity<String> entity = new HttpEntity<>(mapper.writeValueAsString(requestBody),headers);
+
+        ResponseEntity<String> exchange = testRestTemplate.exchange("/spotippos/properties", HttpMethod.POST, entity, String.class);
+        LinkedTreeMap response = gson.fromJson(exchange.getBody(), LinkedTreeMap.class);
+
+        assertNotNull(exchange);
+        assertEquals(exchange.getStatusCode(), HttpStatus.OK);
+        assertTrue(!response.get("id").equals(0D));
+        assertEquals(((Double) response.get("x")).intValue(), requestBody.get("x"));
+        assertEquals(((Double) response.get("y")).intValue(), requestBody.get("y"));
+        assertEquals(((Double) response.get("beds")).intValue(), requestBody.get("beds"));
+        assertEquals(((Double) response.get("baths")).intValue(), requestBody.get("baths"));
+        assertEquals(((Double) response.get("squareMeters")).intValue(), requestBody.get("squareMeters"));
+        assertEquals(response.get("price"), requestBody.get("price"));
+        assertEquals(response.get("title"), requestBody.get("title"));
+        assertEquals(response.get("description"), requestBody.get("description"));
+        assertTrue(((List) response.get("provinces")).size() == 4);
+        assertTrue(((List) response.get("provinces")).contains(GODE));
+        assertTrue(((List) response.get("provinces")).contains(RUJA));
+        assertTrue(((List) response.get("provinces")).contains(SCAVY));
+        assertTrue(((List) response.get("provinces")).contains(GROOLA));
+    }
+
+    @Test
+    public void testGetPropertyInNova() throws Exception{
+        ResponseEntity<String> entity = testRestTemplate.getForEntity("/spotippos/properties/700", String.class);
+        LinkedHashMap response = gson.fromJson(entity.getBody(), LinkedHashMap.class);
+
+        assertEquals(entity.getStatusCode(), HttpStatus.OK);
+        assertEquals(response.get("id"), 700D);
+        assertEquals(response.get("x"), 1107D);
+        assertEquals(response.get("y"), 39D);
+        assertEquals(response.get("price"), 1380000D);
+        assertEquals(response.get("beds"), 5D);
+        assertEquals(response.get("baths"), 4D);
+        assertEquals(response.get("squareMeters"), 135D);
+        assertTrue(((List) response.get("provinces")).size() == 1);
+        assertEquals(response.get("title"), "Imóvel código 700, com 5 quartos e 4 banheiros.");
+        assertEquals(response.get("description"), "Do cillum sit tempor laborum enim. Cupidatat quis elit non aliqua ut irure.");
+        assertTrue(((List) response.get("provinces")).contains(NOVA));
+    }
+
+    @Test
+    public void testGetPropertyInJaby() throws Exception{
+        ResponseEntity<String> entity = testRestTemplate.getForEntity("/spotippos/properties/990", String.class);
+        LinkedHashMap response = gson.fromJson(entity.getBody(), LinkedHashMap.class);
+
+        assertEquals(entity.getStatusCode(), HttpStatus.OK);
+        assertEquals(response.get("id"), 990D);
+        assertEquals(response.get("x"), 1231D);
+        assertEquals(response.get("y"), 606D);
+        assertEquals(response.get("price"), 705000D);
+        assertEquals(response.get("beds"), 3D);
+        assertEquals(response.get("baths"), 2D);
+        assertEquals(response.get("squareMeters"), 67D);
+        assertTrue(((List) response.get("provinces")).size() == 1);
+        assertEquals(response.get("title"), "Imóvel código 990, com 3 quartos e 2 banheiros.");
+        assertEquals(response.get("description"), "Dolore aliquip aliqua est laboris commodo qui aliqua nostrud. Consectetur aliquip adipisicing proident nisi ex pariatur pariatur aute.");
+        assertTrue(((List) response.get("provinces")).contains(JABY));
+    }
+
+    private Map<String, Object> requestPropertyInGodeRujaScavyGroola(){
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("x",600);
         requestBody.put("y",500);
         requestBody.put("title","Imóvel código 1, com 5 quartos e 4 banheiros");
-        requestBody.put("price", 1250000);
+        requestBody.put("price", 1250000D);
         requestBody.put("description","Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
         requestBody.put("beds", 4);
         requestBody.put("baths", 3);
         requestBody.put("squareMeters", 210);
-        HttpEntity<String> entity = new HttpEntity<>(mapper.writeValueAsString(requestBody),headers);
 
-        ResponseEntity<String> exchange = testRestTemplate.exchange("/spotippos/properties", HttpMethod.POST, entity, String.class);
-
-        assertNotNull(exchange);
-        assertEquals(exchange.getStatusCode(), HttpStatus.OK);
-    }
-
-
-
-    private void loadProvinces(){
-        ProvinceDTO gode = spy(ProvinceDTO.class);
-        BoundariesDTO boundariesGode = spy(BoundariesDTO.class);
-        UpperLeftDTO uppperleftGode = spy(UpperLeftDTO.class);
-        BottomRightDTO bottomRightGode = spy(BottomRightDTO.class);
-
-        when(gode.getName()).thenReturn(GODE);
-        when(gode.getBoundaries()).thenReturn(boundariesGode);
-        when(gode.getBoundaries().getUpperLeft()).thenReturn(uppperleftGode);
-        when(gode.getBoundaries().getBottomRight()).thenReturn(bottomRightGode);
-        when(gode.getBoundaries().getUpperLeft().getX()).thenReturn(0L);
-        when(gode.getBoundaries().getUpperLeft().getY()).thenReturn(1000L);
-        when(gode.getBoundaries().getBottomRight().getX()).thenReturn(600L);
-        when(gode.getBoundaries().getBottomRight().getY()).thenReturn(500L);
-
-
-        ProvinceDTO ruja = spy(ProvinceDTO.class);
-        BoundariesDTO boundariesRuja = spy(BoundariesDTO.class);
-        UpperLeftDTO uppperleftRuja = spy(UpperLeftDTO.class);
-        BottomRightDTO bottomRightRuja = spy(BottomRightDTO.class);
-
-        when(ruja.getName()).thenReturn(RUJA);
-        when(ruja.getBoundaries()).thenReturn(boundariesRuja);
-        when(ruja.getBoundaries().getUpperLeft()).thenReturn(uppperleftRuja);
-        when(ruja.getBoundaries().getBottomRight()).thenReturn(bottomRightRuja);
-        when(ruja.getBoundaries().getUpperLeft().getX()).thenReturn(400L);
-        when(ruja.getBoundaries().getUpperLeft().getY()).thenReturn(1000L);
-        when(ruja.getBoundaries().getBottomRight().getX()).thenReturn(1100L);
-        when(ruja.getBoundaries().getBottomRight().getY()).thenReturn(500L);
-
-
-        ProvinceDTO scavy = spy(ProvinceDTO.class);
-        BoundariesDTO boundariesScavy = spy(BoundariesDTO.class);
-        UpperLeftDTO uppperleftScavy = spy(UpperLeftDTO.class);
-        BottomRightDTO bottomRightScavy = spy(BottomRightDTO.class);
-
-        when(scavy.getName()).thenReturn(SCAVY);
-        when(scavy.getBoundaries()).thenReturn(boundariesScavy);
-        when(scavy.getBoundaries().getUpperLeft()).thenReturn(uppperleftScavy);
-        when(scavy.getBoundaries().getBottomRight()).thenReturn(bottomRightScavy);
-        when(scavy.getBoundaries().getUpperLeft().getX()).thenReturn(0L);
-        when(scavy.getBoundaries().getUpperLeft().getY()).thenReturn(500L);
-        when(scavy.getBoundaries().getBottomRight().getX()).thenReturn(600L);
-        when(scavy.getBoundaries().getBottomRight().getY()).thenReturn(0L);
-
-
-        ProvinceDTO groola = spy(ProvinceDTO.class);
-        BoundariesDTO boundariesGroola = spy(BoundariesDTO.class);
-        UpperLeftDTO uppperleftGroola = spy(UpperLeftDTO.class);
-        BottomRightDTO bottomRightGroola = spy(BottomRightDTO.class);
-
-        when(groola.getName()).thenReturn(GROOLA);
-        when(groola.getBoundaries()).thenReturn(boundariesGroola);
-        when(groola.getBoundaries().getUpperLeft()).thenReturn(uppperleftGroola);
-        when(groola.getBoundaries().getBottomRight()).thenReturn(bottomRightGroola);
-        when(groola.getBoundaries().getUpperLeft().getX()).thenReturn(600L);
-        when(groola.getBoundaries().getUpperLeft().getY()).thenReturn(500L);
-        when(groola.getBoundaries().getBottomRight().getX()).thenReturn(800L);
-        when(groola.getBoundaries().getBottomRight().getY()).thenReturn(0L);
-
-
-        ProvinceDTO jaby = spy(ProvinceDTO.class);
-        BoundariesDTO boundariesJaby = spy(BoundariesDTO.class);
-        UpperLeftDTO uppperleftJaby = spy(UpperLeftDTO.class);
-        BottomRightDTO bottomRightJaby = spy(BottomRightDTO.class);
-
-        when(jaby.getName()).thenReturn(JABY);
-        when(jaby.getBoundaries()).thenReturn(boundariesJaby);
-        when(jaby.getBoundaries().getUpperLeft()).thenReturn(uppperleftJaby);
-        when(jaby.getBoundaries().getBottomRight()).thenReturn(bottomRightJaby);
-        when(jaby.getBoundaries().getUpperLeft().getX()).thenReturn(1100L);
-        when(jaby.getBoundaries().getUpperLeft().getY()).thenReturn(1000L);
-        when(jaby.getBoundaries().getBottomRight().getX()).thenReturn(1400L);
-        when(jaby.getBoundaries().getBottomRight().getY()).thenReturn(500L);
-
-
-        ProvinceDTO nova = spy(ProvinceDTO.class);
-        BoundariesDTO boundariesNova = spy(BoundariesDTO.class);
-        UpperLeftDTO uppperleftNova = spy(UpperLeftDTO.class);
-        BottomRightDTO bottomRightNova = spy(BottomRightDTO.class);
-
-        when(nova.getName()).thenReturn(NOVA);
-        when(nova.getBoundaries()).thenReturn(boundariesNova);
-        when(nova.getBoundaries().getUpperLeft()).thenReturn(uppperleftNova);
-        when(nova.getBoundaries().getBottomRight()).thenReturn(bottomRightNova);
-        when(nova.getBoundaries().getUpperLeft().getX()).thenReturn(800L);
-        when(nova.getBoundaries().getUpperLeft().getY()).thenReturn(500L);
-        when(nova.getBoundaries().getBottomRight().getX()).thenReturn(1400L);
-        when(nova.getBoundaries().getBottomRight().getY()).thenReturn(0L);
-
-        spotipposService.saveProvince(gode);
-        spotipposService.saveProvince(ruja);
-        spotipposService.saveProvince(scavy);
-        spotipposService.saveProvince(groola);
-        spotipposService.saveProvince(jaby);
-        spotipposService.saveProvince(nova);
+        return requestBody;
     }
 
 }
