@@ -63,7 +63,7 @@ public class SpotipposIntegrationTest {
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        Map<String, Object> requestBody =requestPropertyInGodeRujaScavyGroola();
+        Map<String, Object> requestBody = requestPropertyInGodeRujaScavyGroola();
         HttpEntity<String> entity = new HttpEntity<>(mapper.writeValueAsString(requestBody),headers);
 
         ResponseEntity<String> exchange = testRestTemplate.exchange("/spotippos/properties", HttpMethod.POST, entity, String.class);
