@@ -1,11 +1,11 @@
 package br.com.spotippos.challenge.rest;
 
-import br.com.spotippos.challenge.utils.ConverterUtils;
 import br.com.spotippos.challenge.rest.request.PropertyRequest;
 import br.com.spotippos.challenge.rest.response.ErrorResponse;
 import br.com.spotippos.challenge.rest.response.PropertyResponse;
 import br.com.spotippos.challenge.service.SpotipposService;
 import br.com.spotippos.challenge.service.dto.PropertyDTO;
+import br.com.spotippos.challenge.utils.ConverterUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +19,6 @@ import javax.validation.constraints.NotNull;
  * @since 04/08/2016.
  */
 @RestController
-@RequestMapping
 public class SpotipposRestController {
 
     @Autowired
@@ -56,10 +55,10 @@ public class SpotipposRestController {
     @RequestMapping(
             value = "/properties/{id}",
             method = RequestMethod.GET,
-            produces = "application/json"
+            produces = "application/json",
+            consumes = "application/json"
     )
     public <Response> Response findPropertyByID(
-            @Valid
             @PathVariable("id")
             @Min(value = 0, message = "{id.min}")
             @NotNull(message = "{id.notnull}")
@@ -75,5 +74,7 @@ public class SpotipposRestController {
 
         return  response;
     }
+
+
 
 }

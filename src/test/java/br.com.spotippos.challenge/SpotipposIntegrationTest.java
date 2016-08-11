@@ -37,6 +37,8 @@ public class SpotipposIntegrationTest {
     @Autowired
     private LoadDataTask task;
 
+    private HttpHeaders headers;
+
     private final static String GODE = "Gode";
     private final static String RUJA = "Ruja";
     private final static String SCAVY = "Scavy";
@@ -46,6 +48,9 @@ public class SpotipposIntegrationTest {
 
     @Before
     public void init(){
+        headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setContentType(MediaType.APPLICATION_JSON);
         task.loadStoredData();
     }
 
@@ -60,9 +65,6 @@ public class SpotipposIntegrationTest {
     @Test
     public void test_save_property() throws Exception{
         ObjectMapper mapper = new ObjectMapper();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        headers.setContentType(MediaType.APPLICATION_JSON);
 
         Map<String, Object> requestBody = requestPropertyInGodeRujaScavyGroola();
         HttpEntity<String> entity = new HttpEntity<>(mapper.writeValueAsString(requestBody),headers);
@@ -90,7 +92,7 @@ public class SpotipposIntegrationTest {
 
     @Test
     public void test_get_property_in_nova() throws Exception{
-        ResponseEntity<String> entity = testRestTemplate.getForEntity("/spotippos/properties/700", String.class);
+        ResponseEntity<String> entity = testRestTemplate.exchange("/spotippos/properties/700", HttpMethod.GET, new HttpEntity<>(headers), String.class);
         LinkedHashMap response = gson.fromJson(entity.getBody(), LinkedHashMap.class);
 
         assertEquals(entity.getStatusCode(), HttpStatus.OK);
@@ -109,7 +111,7 @@ public class SpotipposIntegrationTest {
 
     @Test
     public void test_get_property_in_jaby() throws Exception{
-        ResponseEntity<String> entity = testRestTemplate.getForEntity("/spotippos/properties/990", String.class);
+        ResponseEntity<String> entity = testRestTemplate.exchange("/spotippos/properties/990", HttpMethod.GET, new HttpEntity<>(headers), String.class);
         LinkedHashMap response = gson.fromJson(entity.getBody(), LinkedHashMap.class);
 
         assertEquals(entity.getStatusCode(), HttpStatus.OK);

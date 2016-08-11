@@ -1,9 +1,9 @@
 package br.com.spotippos.challenge.task;
 
-import br.com.spotippos.challenge.utils.ConverterUtils;
 import br.com.spotippos.challenge.service.SpotipposService;
 import br.com.spotippos.challenge.service.dto.PropertyDTO;
 import br.com.spotippos.challenge.service.dto.ProvinceDTO;
+import br.com.spotippos.challenge.utils.ConverterUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
