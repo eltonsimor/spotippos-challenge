@@ -15,7 +15,8 @@ import static org.mockito.Mockito.when;
 
 
 /**
- * Created by mtzcpd663 on 04/08/2016.
+ * @author Elton Moraes
+ * @since 04/08/2016.
  */
 public class SpotipposTest {
 

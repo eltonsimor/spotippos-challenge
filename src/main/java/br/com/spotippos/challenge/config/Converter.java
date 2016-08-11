@@ -4,7 +4,8 @@ import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
 /**
- * Created by mtzcpd663 on 05/08/2016.
+ * @author Elton Moraes
+ * @since 05/08/2016.
  */
 public abstract class Converter {
 

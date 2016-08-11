@@ -6,7 +6,8 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
- * Created by eltonmoraes on 04/08/16.
+ * @author Elton Moraes
+ * @since 04/08/16.
  */
 public class PropertyRequest implements Serializable {
     private static final long serialVersionUID = 2031642290627384696L;

@@ -3,7 +3,8 @@ package br.com.spotippos.challenge.rest.response;
 import java.io.Serializable;
 
 /**
- * Created by mtzcpd663 on 09/08/2016.
+ * @author Elton Moraes
+ * @since09/08/2016.
  */
 public class ErrorResponse implements Serializable {
     private static final long serialVersionUID = -3445978911363703959L;

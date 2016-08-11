@@ -21,7 +21,8 @@ import static org.junit.Assert.*;
 
 
 /**
- * Created by mtzcpd663 on 10/08/2016.
+ * @author Elton Moraes
+ * @since 10/08/2016.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {Application.class})

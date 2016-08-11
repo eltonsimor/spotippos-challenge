@@ -7,7 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * Created by mtzcpd663 on 04/08/2016.
+ * @author Elton Moraes
+ * @since 04/08/2016.
  */
 @SpringBootApplication(scanBasePackages = {
         "br.com.spotippos.challenge.rest",

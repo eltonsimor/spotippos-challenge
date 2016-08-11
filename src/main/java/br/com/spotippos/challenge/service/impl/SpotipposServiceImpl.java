@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by mtzcpd663 on 04/08/2016.
+ * @author Elton Moraes
+ * @since 04/08/2016.
  */
 @Singleton
 @Component

@@ -3,7 +3,8 @@ package br.com.spotippos.challenge.service.dto;
 import java.io.Serializable;
 
 /**
- * Created by mtzcpd663 on 04/08/2016.
+ * @author Elton Moraes
+ * @since 04/08/2016.
  */
 public class ProvinceDTO implements Serializable {
     private static final long serialVersionUID = -3957629644271592198L;

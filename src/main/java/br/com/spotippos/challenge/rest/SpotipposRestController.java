@@ -15,7 +15,8 @@ import javax.validation.constraints.NotNull;
 
 
 /**
- * Created by mtzcpd663 on 04/08/2016.
+ * @author Elton Moraes
+ * @since 04/08/2016.
  */
 @RestController
 @RequestMapping

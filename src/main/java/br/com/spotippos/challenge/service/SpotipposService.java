@@ -8,7 +8,8 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by mtzcpd663 on 04/08/2016.
+ * @author Elton Moraes
+ * @since 04/08/2016.
  */
 public interface SpotipposService extends Serializable{
 
