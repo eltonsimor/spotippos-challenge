@@ -54,7 +54,6 @@ public class SpotipposIntegrationTest {
 
         assertEquals(HttpStatus.OK, entity.getStatusCode());
         assertTrue(entity.getBody().contains("OK"));
-        assertEquals(entity.getStatusCodeValue(),HttpStatus.OK.value());
     }
 
     @Test
