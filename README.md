@@ -10,9 +10,9 @@
 7.  **Gradle** para gerenciamento de dependências.
 8.  **Design Pattern Strategy** padrão de desenvolvimento.
 9.  **Guava** para calcular o range e obter as propriedade.
-10. **GSON** para converter os serviços JSON.
-11. **DOZER** para converter qualquer tipo de objeto comparado pelos mesmos nomes de variaveis.
-12. **HEROKU** Esse projeto está preparado para rodar em qualquer servidor Heroku.
+10. **Gson** para converter os serviços JSON.
+11. **Dozer** para converter qualquer tipo de objeto comparado pelos mesmos nomes de variaveis.
+12. **Heroku** Esse projeto está preparado para rodar em qualquer servidor Heroku.
 
 
 >_OBS:_ Esse projeto está funcionando no heroku, link para realizar testes:
