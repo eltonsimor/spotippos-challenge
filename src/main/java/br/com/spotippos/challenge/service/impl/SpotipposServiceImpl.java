@@ -82,7 +82,7 @@ public class SpotipposServiceImpl implements SpotipposService {
         Range<Long> rangeX = SpotipposUtils.setRange(xa, xb);
         Range<Long> rangeY = SpotipposUtils.setRange(ya, yb);
 
-        List<PropertyDTO> properties = this.properties.stream()
+        List<PropertyDTO> properties = this.properties.parallelStream()
                 .filter(p -> rangeX.contains(p.getX()) && rangeY.contains(p.getY()))
                 .collect(Collectors.toList());
 
