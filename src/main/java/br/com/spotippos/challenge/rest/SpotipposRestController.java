@@ -1,5 +1,6 @@
 package br.com.spotippos.challenge.rest;
 
+import br.com.spotippos.challenge.exceptions.SpotipposException;
 import br.com.spotippos.challenge.rest.request.PropertyRequest;
 import br.com.spotippos.challenge.rest.response.ErrorResponse;
 import br.com.spotippos.challenge.rest.response.PropertiesResponse;
@@ -8,6 +9,8 @@ import br.com.spotippos.challenge.service.SpotipposService;
 import br.com.spotippos.challenge.service.dto.PropertiesDTO;
 import br.com.spotippos.challenge.service.dto.PropertyDTO;
 import br.com.spotippos.challenge.utils.ConverterUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +26,7 @@ import javax.validation.constraints.NotNull;
  */
 @RestController
 public class SpotipposRestController {
+    private static final Logger LOG = LoggerFactory.getLogger(SpotipposRestController.class);
 
     @Autowired
     private SpotipposService spotipposService;
@@ -48,8 +52,10 @@ public class SpotipposRestController {
             PropertyDTO property = ConverterUtils.convertTo(rq, PropertyDTO.class);
             PropertyDTO dto = spotipposService.saveProperty(property);
             response = (Response) ConverterUtils.convertTo(dto, PropertyResponse.class);
-        } catch (Exception e) {
-            response = (Response) new ErrorResponse(77777,"Erro ao salvar a propriedade. Verifique o contrato do request.");
+        } catch (SpotipposException e) {
+            String message = e.getMessage();
+            LOG.error(message, e);
+            response = (Response) new ErrorResponse(77777, message);
         }
 
         return response;
@@ -70,8 +76,10 @@ public class SpotipposRestController {
         try {
             PropertyDTO property = spotipposService.findPropertyByID(id);
             response = (Response) ConverterUtils.convertTo(property, PropertyResponse.class);
-        } catch (Exception e) {
-            response = (Response) new ErrorResponse(8888,"Não foi possível localizar a propriedade pelo o ID: " + id);
+        } catch (SpotipposException e) {
+            String message = e.getMessage();
+            LOG.error(message, e);
+            response = (Response) new ErrorResponse(8888, message);
         }
 
         return  response;
@@ -108,8 +116,10 @@ public class SpotipposRestController {
         try {
             PropertiesDTO propertiesDTO = spotipposService.findPropertiesByRange(ax, ay, bx, by);
             response = (Response) ConverterUtils.convertTo(propertiesDTO, PropertiesResponse.class);
-        } catch (Exception e) {
-            response = (Response) new ErrorResponse(9999, "Não foi possível localizar nenhuma propriedade no intervalo solicitado.");
+        } catch (SpotipposException e) {
+            String message = e.getMessage();
+            LOG.error(message, e);
+            response = (Response) new ErrorResponse(9999, message);
         }
 
         return response;

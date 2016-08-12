@@ -1,5 +1,6 @@
 package br.com.spotippos.challenge.task;
 
+import br.com.spotippos.challenge.exceptions.SpotipposException;
 import br.com.spotippos.challenge.service.SpotipposService;
 import br.com.spotippos.challenge.service.dto.PropertyDTO;
 import br.com.spotippos.challenge.service.dto.ProvinceDTO;
@@ -56,11 +57,14 @@ public class LoadDataTask {
         mapProvinces.entrySet()
                 .stream()
                 .forEach(p -> {
-                    String nameProvince = p.getKey();
-                    ProvinceDTO province = ConverterUtils.convertTo(p.getValue(), ProvinceDTO.class);
-                    province.setName(nameProvince);
-
-                    spotipposService.saveProvince(province);
+                    try {
+                        String nameProvince = p.getKey();
+                        ProvinceDTO province = ConverterUtils.convertTo(p.getValue(), ProvinceDTO.class);
+                        province.setName(nameProvince);
+                        spotipposService.saveProvince(province);
+                    } catch (SpotipposException e) {
+                        LOG.error(e.getMessage(), e);
+                    }
                 });
         LOG.info("[LOADED PROVINCES] :: TKS....:");
 
@@ -79,8 +83,12 @@ public class LoadDataTask {
         List properties = (ArrayList) mapProperties.get("properties");
 
         properties.stream().forEach(p -> {
-            PropertyDTO property = ConverterUtils.convertTo(p, PropertyDTO.class);
-            spotipposService.saveProperty(property);
+            try {
+                PropertyDTO property = ConverterUtils.convertTo(p, PropertyDTO.class);
+                spotipposService.saveProperty(property);
+            } catch (SpotipposException e) {
+                LOG.error(e.getMessage(), e);
+            }
         });
 
         LOG.info("[LOADED PROPERTIES] :: TKS....:");

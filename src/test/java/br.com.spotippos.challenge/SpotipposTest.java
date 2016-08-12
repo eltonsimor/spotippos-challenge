@@ -1,6 +1,7 @@
 package br.com.spotippos.challenge;
 
 
+import br.com.spotippos.challenge.exceptions.SpotipposException;
 import br.com.spotippos.challenge.service.SpotipposService;
 import br.com.spotippos.challenge.service.dto.*;
 import br.com.spotippos.challenge.service.impl.SpotipposServiceImpl;
@@ -31,13 +32,13 @@ public class SpotipposTest {
     private final static String NOVA = "Nova";
 
     @Before
-    public void init(){
+    public void init() throws SpotipposException {
         spotipposService = new SpotipposServiceImpl();
         loadProvinces();
     }
 
     @Test
-    public final void test_get_province_gode(){
+    public final void test_get_province_gode() throws SpotipposException {
         List<ProvinceDTO> provinces = spotipposService.findProvinces(399, 1000);
 
         assertEquals(provinces.size(), 1, 0);
@@ -45,7 +46,7 @@ public class SpotipposTest {
     }
 
     @Test
-    public final void test_get_province_ruja(){
+    public final void test_get_province_ruja() throws SpotipposException {
         List<ProvinceDTO> provinces = spotipposService.findProvinces(601, 1000);
 
         assertEquals(provinces.size(), 1, 0);
@@ -53,7 +54,7 @@ public class SpotipposTest {
     }
 
     @Test
-    public final void test_get_province_jaby(){
+    public final void test_get_province_jaby() throws SpotipposException {
         List<ProvinceDTO> provinces = spotipposService.findProvinces(1101, 1000);
 
         assertEquals(provinces.size(), 1, 0);
@@ -61,7 +62,7 @@ public class SpotipposTest {
     }
 
     @Test
-    public final void test_get_province_scavy(){
+    public final void test_get_province_scavy() throws SpotipposException {
         List<ProvinceDTO> provinces = spotipposService.findProvinces(0, 0);
 
         assertEquals(provinces.size(), 1, 0);
@@ -69,7 +70,7 @@ public class SpotipposTest {
     }
 
     @Test
-    public final void test_get_province_groola(){
+    public final void test_get_province_groola() throws SpotipposException {
         List<ProvinceDTO> provinces = spotipposService.findProvinces(601, 0);
 
         assertEquals(provinces.size(), 1, 0);
@@ -77,7 +78,7 @@ public class SpotipposTest {
     }
 
     @Test
-    public final void test_get_province_nova(){
+    public final void test_get_province_nova() throws SpotipposException {
         List<ProvinceDTO> provinces = spotipposService.findProvinces(801, 0);
 
         assertEquals(provinces.size(), 1, 0);
@@ -86,7 +87,7 @@ public class SpotipposTest {
 
 
     @Test
-    public final void test_save_property(){
+    public final void test_save_property() throws SpotipposException {
         PropertyDTO mockDto = mockPropertyInGode();
         PropertyDTO dto = spotipposService.saveProperty(mockDto);
 
@@ -101,7 +102,7 @@ public class SpotipposTest {
     }
 
     @Test
-    public final void test_get_property_in_gode(){
+    public final void test_get_property_in_gode() throws SpotipposException {
         PropertyDTO property = spotipposService.saveProperty(mockPropertyInGode());
 
         assertEquals(property.getProvinces().size(), 1);
@@ -109,7 +110,7 @@ public class SpotipposTest {
     }
 
     @Test
-    public final void test_get_property_in_gode_ruja_scavy_groola(){
+    public final void test_get_property_in_gode_ruja_scavy_groola() throws SpotipposException {
         PropertyDTO property = spotipposService.saveProperty(mockPropertyInGodeRujaScavyGroola());
 
         assertEquals(property.getProvinces().size(), 4, 0);
@@ -121,7 +122,7 @@ public class SpotipposTest {
     }
 
     @Test
-    public final void test_get_property_in_ruja_groola_nova(){
+    public final void test_get_property_in_ruja_groola_nova() throws SpotipposException {
 
         PropertyDTO property = spotipposService.saveProperty(mockPropertyInRujaGroolaNova());
 
@@ -133,7 +134,7 @@ public class SpotipposTest {
     }
 
     @Test
-    public final void test_get_property_in_ruja_jaby_nova(){
+    public final void test_get_property_in_ruja_jaby_nova() throws SpotipposException {
         PropertyDTO property = spotipposService.saveProperty(mockPropertyInRujaJabyNova());
 
         assertEquals(property.getProvinces().size(), 3, 0);
@@ -143,7 +144,7 @@ public class SpotipposTest {
     }
 
     @Test
-    public final void test_get_property_by_id(){
+    public final void test_get_property_by_id() throws SpotipposException {
         PropertyDTO dto = mockPropertyInGode();
         spotipposService.saveProperty(dto);
         PropertyDTO propertyByID = spotipposService.findPropertyByID(1L);
@@ -168,7 +169,7 @@ public class SpotipposTest {
     }
 
     @Test
-    public final void test_get_properties_by_range(){
+    public final void test_get_properties_by_range() throws SpotipposException {
         PropertyDTO godeRujaScavyGroola = mockPropertyInGodeRujaScavyGroola();
         PropertyDTO gode = mockPropertyInGode();
         spotipposService.saveProperty(gode);
@@ -238,7 +239,7 @@ public class SpotipposTest {
 
 
 
-    private void loadProvinces(){
+    private void loadProvinces() throws SpotipposException {
         ProvinceDTO gode = spy(ProvinceDTO.class);
         BoundariesDTO boundariesGode = spy(BoundariesDTO.class);
         UpperLeftDTO uppperleftGode = spy(UpperLeftDTO.class);
