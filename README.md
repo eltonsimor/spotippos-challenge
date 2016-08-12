@@ -42,7 +42,7 @@
 
 * 3) Após a finalização do build, executar o comando:
 ```javascript
-    java -jar build\libs\spotippos-challenge-1.0.0.jar
+    'java -jar build\libs\spotippos-challenge-1.0.0.jar'
 ```
 
 >Pronto! Aplicação já pode ser utilizada! ;)
