@@ -24,7 +24,7 @@
 #### Pré-Requisito:
 
 * 1) Ter o Java 8 Instalado [Java](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
-* 2) Instalar o gradle [Gradle](https://services.gradle.org/distributions/gradle-2.14.1-all.zip).
+* 2) Ter o Gradle [Gradle](https://services.gradle.org/distributions/gradle-2.14.1-all.zip).
 
 
 
