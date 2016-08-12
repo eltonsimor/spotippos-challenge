@@ -38,7 +38,7 @@ curl -X GET http://spotippos-challenge.herokuapp.com/spotippos/properties/2000 -
 
 _Request para obter propriedade definido por um range de coordenadas_
 ```javascript
-curl -X GET -G 'http://spotippos-challenge.herokuapp.com/spotippos/properties' -d xa=0 -d ya=500 -d xb=600 -d yb=1000
+curl -X GET -G 'http://spotippos-challenge.herokuapp.com/spotippos/properties' -d ax=0 -d ay=500 -d bx=600 -d by=1000
 ```
 
 **Response**

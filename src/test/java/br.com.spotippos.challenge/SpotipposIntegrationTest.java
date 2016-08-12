@@ -139,10 +139,10 @@ public class SpotipposIntegrationTest {
     @Test
     public void test_get_properties_by_range() throws Exception{
         UriComponentsBuilder baseUrl = UriComponentsBuilder.fromUriString("/spotippos/properties");
-        baseUrl.queryParam("xa", 0);
-        baseUrl.queryParam("ya", 0);
-        baseUrl.queryParam("xb", 50);
-        baseUrl.queryParam("yb", 10);
+        baseUrl.queryParam("ax", 0);
+        baseUrl.queryParam("ay", 0);
+        baseUrl.queryParam("bx", 50);
+        baseUrl.queryParam("by", 10);
 
         ResponseEntity<String> exchange = testRestTemplate.exchange(baseUrl.build().encode().toUri().toString(), HttpMethod.GET, new HttpEntity<>(headers), String.class);
         LinkedHashMap linkedHashMap = gson.fromJson(exchange.getBody(), LinkedHashMap.class);

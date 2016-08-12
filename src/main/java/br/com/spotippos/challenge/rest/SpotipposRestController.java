@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -82,18 +83,30 @@ public class SpotipposRestController {
             produces = "application/json"
     )
     public <Response> Response findPropertiesByRange(
-            @RequestParam("xa")
-            long xa,
-            @RequestParam("ya")
-            long ya,
-            @RequestParam("xb")
-            long xb,
-            @RequestParam("yb")
-            long yb){
+            @RequestParam("ax")
+            @NotNull(message = "{ax.notnull}")
+            @Min(value = 0, message = "{ax.min}")
+            @Max(value = 1400, message = "{ax.max}")
+            long ax,
+            @RequestParam("ay")
+            @NotNull(message = "{ay.notnull}")
+            @Min(value = 0, message = "{ay.min}")
+            @Max(value = 1000, message = "{ay.max}")
+            long ay,
+            @RequestParam("bx")
+            @NotNull(message = "{bx.notnull}")
+            @Min(value = 0, message = "{bx.min}")
+            @Max(value = 1400, message = "{bx.max}")
+            long bx,
+            @RequestParam("by")
+            @NotNull(message = "{by.notnull}")
+            @Min(value = 0, message = "{by.min}")
+            @Max(value = 1000, message = "{by.max}")
+            long by){
 
         Response response;
         try {
-            PropertiesDTO propertiesDTO = spotipposService.findPropertiesByRange(xa, ya, xb, yb);
+            PropertiesDTO propertiesDTO = spotipposService.findPropertiesByRange(ax, ay, bx, by);
             response = (Response) ConverterUtils.convertTo(propertiesDTO, PropertiesResponse.class);
         } catch (Exception e) {
             response = (Response) new ErrorResponse(9999, "Não foi possível localizar nenhuma propriedade no intervalo solicitado.");

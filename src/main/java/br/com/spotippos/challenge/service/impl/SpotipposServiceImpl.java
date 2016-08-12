@@ -78,10 +78,10 @@ public class SpotipposServiceImpl implements SpotipposService {
     }
 
     @Override
-    public PropertiesDTO findPropertiesByRange(final long xa, final long ya, final long xb, final long yb){
+    public PropertiesDTO findPropertiesByRange(final long ax, final long ay, final long bx, final long by){
         PropertiesDTO propertiesDTO = new PropertiesDTO();
-        Range<Long> rangeX = SpotipposUtils.setRange(xa, xb);
-        Range<Long> rangeY = SpotipposUtils.setRange(ya, yb);
+        Range<Long> rangeX = SpotipposUtils.setRange(ax, bx);
+        Range<Long> rangeY = SpotipposUtils.setRange(ay, by);
 
         List<PropertyDTO> properties = this.properties.parallelStream()
                 .filter(p -> rangeX.contains(p.getX()) && rangeY.contains(p.getY()))
