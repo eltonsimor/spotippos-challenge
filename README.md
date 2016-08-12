@@ -19,10 +19,7 @@
 
 ### Instruções:
 
-* Foi criado um serviço Rest, onde você envia as Sondas e suas instruções para que elas se movam.
-* Para isso, será necessário enviar o request para o serviço. Primeiro vamos subir o WildFly e realizar o deploy do WAR.
-* Após subir o WildFly , o serviço POST que será utilizado é ``http://servername:port/explorando-marte-web/rest/explorarMarte  |  Content-Type "application-json``` .
-* Para facilitar o mapeamento do request, utilize a seguinte estrutura:
+* is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
 #### Entradas e Saídas:
 
