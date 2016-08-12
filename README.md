@@ -15,7 +15,7 @@
 12. **HEROKU** Esse projeto está preparado para rodar em qualquer servidor Heroku.
 
 
->_OBS:_ Esse projeto está funcionando no heroku, link para realizar testes: https://spotippos-challenge.herokuapp.com.br/spotippos/properties
+>_OBS:_ Esse projeto está funcionando no heroku, link para realizar testes: https://spotippos-challenge.herokuapp.com.br/spotippos/
 
 ### Instruções:
 
