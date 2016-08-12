@@ -1,6 +1,6 @@
 #Desafio Spotippos
 
-### Tecnologias Utilizadas:
+## Tecnologias Utilizadas:
 1.  **Spring Boot** utilizei essa tecnologia para criação dos serviços **json**.
 2.  **Spring Boot Test** para realizar  **Testes Integrados**.
 3.  **Junit** para realizar **Testes Unitários**.
@@ -19,9 +19,34 @@
 >_OBS:_ Esse projeto está funcionando no heroku, link para realizar testes:
 <p>http://spotippos-challenge.herokuapp.com/spotippos/properties/1
 
-### Instruções:
+## Instruções para subir a aplicação Local:
 
-* is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+#### Pré-Requisito:
+
+* 1) Ter o Java 8 Instalado [Java](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+* 2) Instalar o gradle [Gradle](https://services.gradle.org/distributions/gradle-2.14.1-all.zip).
+
+
+
+#### Após realizar o pré-requisito vamos seguir o passo-a-passo
+
+_* 1) realizar o clone do projeto._
+´´´javascript
+    git clone https://github.com/eltonsimor/spotippos-challenge.git
+´´´
+
+_* 2) Acessar a raíz do projeto e executar o comando:_
+´´´javascript
+    gradle build
+´´´
+
+_* 3) Após a finalização do build, executar o comando:_
+´´´javascript
+    java -jar build\libs\spotippos-challenge-1.0.0.jar
+´´´
+
+>Pronto! Aplicação já pode ser utilizada! ;)
+
 
 **Request para o ambiente Heroku**
 
