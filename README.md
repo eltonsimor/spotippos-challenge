@@ -26,7 +26,7 @@
 **Request**
 ```javascript
 echo '{ "x": 222, "y": 444, "title": "Imóvel código 1, com 5 quartos e 4 banheiros", "price": 1250000,  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",  "beds": 4,  "baths": 3,  "squareMeters": 210}' > request.json
-\\
+&&
 curl -X POST -d @request.json https://spotippos-challenge.herokuapp.com/spotippos/propeties --header "Content-Type:application/json"
 ```
 
