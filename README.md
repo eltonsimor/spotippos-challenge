@@ -16,7 +16,7 @@
 
 
 >_OBS:_ Esse projeto está funcionando no heroku, link para realizar testes:
-http://spotippos-challenge.herokuapp.com/spotippos/
+<p>http://spotippos-challenge.herokuapp.com/spotippos/
 
 ### Instruções:
 
