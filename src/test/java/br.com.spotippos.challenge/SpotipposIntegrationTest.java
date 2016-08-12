@@ -1,7 +1,12 @@
 package br.com.spotippos.challenge;
 
 import br.com.spotippos.challenge.config.Application;
+import br.com.spotippos.challenge.rest.response.PropertiesResponse;
+import br.com.spotippos.challenge.rest.response.PropertyResponse;
+import br.com.spotippos.challenge.service.dto.PropertiesDTO;
+import br.com.spotippos.challenge.service.dto.PropertyDTO;
 import br.com.spotippos.challenge.task.LoadDataTask;
+import br.com.spotippos.challenge.utils.ConverterUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
@@ -13,6 +18,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.*;
 
@@ -126,6 +134,37 @@ public class SpotipposIntegrationTest {
         assertEquals(response.get("title"), "Imóvel código 990, com 3 quartos e 2 banheiros.");
         assertEquals(response.get("description"), "Dolore aliquip aliqua est laboris commodo qui aliqua nostrud. Consectetur aliquip adipisicing proident nisi ex pariatur pariatur aute.");
         assertTrue(((List) response.get("provinces")).contains(JABY));
+    }
+
+    @Test
+    public void test_get_properties_by_range() throws Exception{
+        UriComponentsBuilder baseUrl = UriComponentsBuilder.fromUriString("/spotippos/properties");
+        baseUrl.queryParam("xa", 0);
+        baseUrl.queryParam("ya", 0);
+        baseUrl.queryParam("xb", 50);
+        baseUrl.queryParam("yb", 10);
+
+        ResponseEntity<String> exchange = testRestTemplate.exchange(baseUrl.build().encode().toUri().toString(), HttpMethod.GET, new HttpEntity<>(headers), String.class);
+        LinkedHashMap linkedHashMap = gson.fromJson(exchange.getBody(), LinkedHashMap.class);
+        PropertiesDTO propertiesDTO = new PropertiesDTO();
+
+        propertiesDTO.setFoundProperties(Double.doubleToLongBits((Double) linkedHashMap.get("foundProperties")));
+        propertiesDTO.setProperties(new ArrayList<>());
+        List properties = (ArrayList)linkedHashMap.get("properties");
+
+        properties.stream().forEach(p -> propertiesDTO.getProperties().add(ConverterUtils.convertTo(p, PropertyDTO.class)));
+
+
+        assertEquals(exchange.getStatusCode(), HttpStatus.OK);
+        assertTrue(propertiesDTO.getFoundProperties() > 1);
+        assertTrue(!propertiesDTO.getProperties().get(0).getProvinces().isEmpty());
+        assertTrue(!propertiesDTO.getProperties().get(1).getProvinces().isEmpty());
+        assertTrue(!propertiesDTO.getProperties().get(2).getProvinces().isEmpty());
+        assertEquals(propertiesDTO.getProperties().get(0).getProvinces().get(0), SCAVY);
+        assertEquals(propertiesDTO.getProperties().get(1).getProvinces().get(0), SCAVY);
+        assertEquals(propertiesDTO.getProperties().get(2).getProvinces().get(0), SCAVY);
+
+
     }
 
     private Map<String, Object> requestPropertyInGodeRujaScavyGroola(){

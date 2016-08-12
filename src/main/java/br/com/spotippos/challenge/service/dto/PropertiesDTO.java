@@ -12,11 +12,6 @@ public class PropertiesDTO implements Serializable {
     private long foundProperties;
     private List<PropertyDTO> properties;
 
-    public PropertiesDTO(long foundProperties, List<PropertyDTO> properties) {
-        this.foundProperties = foundProperties;
-        this.properties = properties;
-    }
-
     public long getFoundProperties() {
         return foundProperties;
     }

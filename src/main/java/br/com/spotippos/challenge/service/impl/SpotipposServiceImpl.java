@@ -79,6 +79,7 @@ public class SpotipposServiceImpl implements SpotipposService {
 
     @Override
     public PropertiesDTO findPropertiesByRange(final long xa, final long ya, final long xb, final long yb){
+        PropertiesDTO propertiesDTO = new PropertiesDTO();
         Range<Long> rangeX = SpotipposUtils.setRange(xa, xb);
         Range<Long> rangeY = SpotipposUtils.setRange(ya, yb);
 
@@ -86,9 +87,10 @@ public class SpotipposServiceImpl implements SpotipposService {
                 .filter(p -> rangeX.contains(p.getX()) && rangeY.contains(p.getY()))
                 .collect(Collectors.toList());
 
-        int foundProperties = properties.size();
+        propertiesDTO.setFoundProperties(properties.size());
+        propertiesDTO.setProperties(properties);
 
-        return new PropertiesDTO(foundProperties, properties);
+        return propertiesDTO;
     }
 
 

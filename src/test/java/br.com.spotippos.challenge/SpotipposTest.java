@@ -4,12 +4,16 @@ package br.com.spotippos.challenge;
 import br.com.spotippos.challenge.service.SpotipposService;
 import br.com.spotippos.challenge.service.dto.*;
 import br.com.spotippos.challenge.service.impl.SpotipposServiceImpl;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
@@ -39,48 +43,48 @@ public class SpotipposTest {
     public final void test_get_province_gode(){
         List<ProvinceDTO> provinces = spotipposService.findProvinces(399, 1000);
 
-        Assert.assertEquals(provinces.size(), 1, 0);
-        Assert.assertEquals(provinces.get(0).getName(), GODE);
+        assertEquals(provinces.size(), 1, 0);
+        assertEquals(provinces.get(0).getName(), GODE);
     }
 
     @Test
     public final void test_get_province_ruja(){
         List<ProvinceDTO> provinces = spotipposService.findProvinces(601, 1000);
 
-        Assert.assertEquals(provinces.size(), 1, 0);
-        Assert.assertEquals(provinces.get(0).getName(), RUJA);
+        assertEquals(provinces.size(), 1, 0);
+        assertEquals(provinces.get(0).getName(), RUJA);
     }
 
     @Test
     public final void test_get_province_jaby(){
         List<ProvinceDTO> provinces = spotipposService.findProvinces(1101, 1000);
 
-        Assert.assertEquals(provinces.size(), 1, 0);
-        Assert.assertEquals(provinces.get(0).getName(), JABY);
+        assertEquals(provinces.size(), 1, 0);
+        assertEquals(provinces.get(0).getName(), JABY);
     }
 
     @Test
     public final void test_get_province_scavy(){
         List<ProvinceDTO> provinces = spotipposService.findProvinces(0, 0);
 
-        Assert.assertEquals(provinces.size(), 1, 0);
-        Assert.assertEquals(provinces.get(0).getName(), SCAVY);
+        assertEquals(provinces.size(), 1, 0);
+        assertEquals(provinces.get(0).getName(), SCAVY);
     }
 
     @Test
     public final void test_get_province_groola(){
         List<ProvinceDTO> provinces = spotipposService.findProvinces(601, 0);
 
-        Assert.assertEquals(provinces.size(), 1, 0);
-        Assert.assertEquals(provinces.get(0).getName(), GROOLA);
+        assertEquals(provinces.size(), 1, 0);
+        assertEquals(provinces.get(0).getName(), GROOLA);
     }
 
     @Test
     public final void test_get_province_nova(){
         List<ProvinceDTO> provinces = spotipposService.findProvinces(801, 0);
 
-        Assert.assertEquals(provinces.size(), 1, 0);
-        Assert.assertEquals(provinces.get(0).getName(), NOVA);
+        assertEquals(provinces.size(), 1, 0);
+        assertEquals(provinces.get(0).getName(), NOVA);
     }
 
 
@@ -89,33 +93,33 @@ public class SpotipposTest {
         PropertyDTO mockDto = mockPropertyInGode();
         PropertyDTO dto = spotipposService.saveProperty(mockDto);
 
-        Assert.assertTrue(dto.getId() > 0);
-        Assert.assertEquals(mockDto.getBaths(), dto.getBaths(), 0);
-        Assert.assertEquals(mockDto.getBeds(), dto.getBeds(), 0);
-        Assert.assertEquals(mockDto.getX(), dto.getX(), 0);
-        Assert.assertEquals(mockDto.getY(), dto.getY(), 0);
-        Assert.assertEquals(mockDto.getPrice(), dto.getPrice(), 0);
-        Assert.assertEquals(mockDto.getDescription(), dto.getDescription());
-        Assert.assertEquals(mockDto.getTitle(), dto.getTitle());
+        assertTrue(dto.getId() > 0);
+        assertEquals(mockDto.getBaths(), dto.getBaths(), 0);
+        assertEquals(mockDto.getBeds(), dto.getBeds(), 0);
+        assertEquals(mockDto.getX(), dto.getX(), 0);
+        assertEquals(mockDto.getY(), dto.getY(), 0);
+        assertEquals(mockDto.getPrice(), dto.getPrice(), 0);
+        assertEquals(mockDto.getDescription(), dto.getDescription());
+        assertEquals(mockDto.getTitle(), dto.getTitle());
     }
 
     @Test
     public final void test_get_property_in_gode(){
         PropertyDTO property = spotipposService.saveProperty(mockPropertyInGode());
 
-        Assert.assertEquals(property.getProvinces().size(), 1);
-        Assert.assertEquals(property.getProvinces().get(0).getName(), GODE);
+        assertEquals(property.getProvinces().size(), 1);
+        assertEquals(property.getProvinces().get(0).getName(), GODE);
     }
 
     @Test
     public final void test_get_property_in_gode_ruja_scavy_groola(){
         PropertyDTO property = spotipposService.saveProperty(mockPropertyInGodeRujaScavyGroola());
 
-        Assert.assertEquals(property.getProvinces().size(), 4, 0);
-        Assert.assertEquals(property.getProvinces().get(0).getName(), GODE);
-        Assert.assertEquals(property.getProvinces().get(1).getName(), RUJA);
-        Assert.assertEquals(property.getProvinces().get(2).getName(), SCAVY);
-        Assert.assertEquals(property.getProvinces().get(3).getName(), GROOLA);
+        assertEquals(property.getProvinces().size(), 4, 0);
+        assertEquals(property.getProvinces().get(0).getName(), GODE);
+        assertEquals(property.getProvinces().get(1).getName(), RUJA);
+        assertEquals(property.getProvinces().get(2).getName(), SCAVY);
+        assertEquals(property.getProvinces().get(3).getName(), GROOLA);
 
     }
 
@@ -124,10 +128,10 @@ public class SpotipposTest {
 
         PropertyDTO property = spotipposService.saveProperty(mockPropertyInRujaGroolaNova());
 
-        Assert.assertEquals(property.getProvinces().size(), 3, 0);
-        Assert.assertEquals(property.getProvinces().get(0).getName(), RUJA);
-        Assert.assertEquals(property.getProvinces().get(1).getName(), GROOLA);
-        Assert.assertEquals(property.getProvinces().get(2).getName(), NOVA);
+        assertEquals(property.getProvinces().size(), 3, 0);
+        assertEquals(property.getProvinces().get(0).getName(), RUJA);
+        assertEquals(property.getProvinces().get(1).getName(), GROOLA);
+        assertEquals(property.getProvinces().get(2).getName(), NOVA);
 
     }
 
@@ -135,10 +139,10 @@ public class SpotipposTest {
     public final void test_get_property_in_ruja_jaby_nova(){
         PropertyDTO property = spotipposService.saveProperty(mockPropertyInRujaJabyNova());
 
-        Assert.assertEquals(property.getProvinces().size(), 3, 0);
-        Assert.assertEquals(property.getProvinces().get(0).getName(), RUJA);
-        Assert.assertEquals(property.getProvinces().get(1).getName(), JABY);
-        Assert.assertEquals(property.getProvinces().get(2).getName(), NOVA);
+        assertEquals(property.getProvinces().size(), 3, 0);
+        assertEquals(property.getProvinces().get(0).getName(), RUJA);
+        assertEquals(property.getProvinces().get(1).getName(), JABY);
+        assertEquals(property.getProvinces().get(2).getName(), NOVA);
     }
 
     @Test
@@ -147,23 +151,35 @@ public class SpotipposTest {
         spotipposService.saveProperty(dto);
         PropertyDTO propertyByID = spotipposService.findPropertyByID(1L);
 
-        Assert.assertEquals(propertyByID.getId(), 1, 0);
-        Assert.assertEquals(propertyByID.getDescription(), dto.getDescription());
-        Assert.assertEquals(propertyByID.getTitle(), dto.getTitle());
-        Assert.assertEquals(propertyByID.getBaths(), dto.getBaths(), 0);
-        Assert.assertEquals(propertyByID.getBeds(), dto.getBeds(), 0);
-        Assert.assertEquals(propertyByID.getPrice(), dto.getPrice(), 0);
-        Assert.assertEquals(propertyByID.getSquareMeters(), dto.getSquareMeters(), 0);
-        Assert.assertEquals(propertyByID.getProvinces().size(), dto.getProvinces().size(), 0);
-        Assert.assertEquals(propertyByID.getProvinces().get(0).getName(), dto.getProvinces().get(0).getName());
-        Assert.assertEquals(propertyByID.getProvinces().get(0).getBoundaries().getBottomRight().getX(),
+        assertEquals(propertyByID.getId(), 1, 0);
+        assertEquals(propertyByID.getDescription(), dto.getDescription());
+        assertEquals(propertyByID.getTitle(), dto.getTitle());
+        assertEquals(propertyByID.getBaths(), dto.getBaths(), 0);
+        assertEquals(propertyByID.getBeds(), dto.getBeds(), 0);
+        assertEquals(propertyByID.getPrice(), dto.getPrice(), 0);
+        assertEquals(propertyByID.getSquareMeters(), dto.getSquareMeters(), 0);
+        assertEquals(propertyByID.getProvinces().size(), dto.getProvinces().size(), 0);
+        assertEquals(propertyByID.getProvinces().get(0).getName(), dto.getProvinces().get(0).getName());
+        assertEquals(propertyByID.getProvinces().get(0).getBoundaries().getBottomRight().getX(),
                 dto.getProvinces().get(0).getBoundaries().getBottomRight().getX(), 0);
-        Assert.assertEquals(propertyByID.getProvinces().get(0).getBoundaries().getBottomRight().getY(),
+        assertEquals(propertyByID.getProvinces().get(0).getBoundaries().getBottomRight().getY(),
                 dto.getProvinces().get(0).getBoundaries().getBottomRight().getY(), 0);
-        Assert.assertEquals(propertyByID.getProvinces().get(0).getBoundaries().getUpperLeft().getX(),
+        assertEquals(propertyByID.getProvinces().get(0).getBoundaries().getUpperLeft().getX(),
                 dto.getProvinces().get(0).getBoundaries().getUpperLeft().getX(), 0);
-        Assert.assertEquals(propertyByID.getProvinces().get(0).getBoundaries().getUpperLeft().getY(),
+        assertEquals(propertyByID.getProvinces().get(0).getBoundaries().getUpperLeft().getY(),
                 dto.getProvinces().get(0).getBoundaries().getUpperLeft().getY(), 0);
+    }
+
+    @Test
+    public final void test_get_properties_by_range(){
+        PropertyDTO godeRujaScavyGroola = mockPropertyInGodeRujaScavyGroola();
+        PropertyDTO gode = mockPropertyInGode();
+        spotipposService.saveProperty(gode);
+        spotipposService.saveProperty(godeRujaScavyGroola);
+        PropertiesDTO properties = spotipposService.findPropertiesByRange(0, 500, 600, 1000);
+
+        assertTrue(!properties.getProperties().isEmpty());
+        assertTrue(properties.getFoundProperties() > 1);
     }
 
     private PropertyDTO mockPropertyInGode() {
