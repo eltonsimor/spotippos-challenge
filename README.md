@@ -2,17 +2,18 @@
 
 ### Tecnologias Utilizadas:
 1.  **Spring Boot** utilizei essa tecnologia para criação dos serviços **json**.
-2.  **Junit** para realizar **Testes Unitários** da aplicação e **Testes Integrados**.
-3.  **JavaEE-API** para validação das entradas do request.
-4.  **log4j** para logar erro caso tenha alguma exception.
-5.  **Jetty** container para roda a aplicação
-6.  **Java 8** línguagem de programação versão 8.
-7.  **Gradle** para gerenciamento de dependências.
-8.  **Design Pattern Strategy** padrão de desenvolvimento.
-9.  **Guava** para calcular o range e obter as propriedade.
-10. **Gson** para converter os serviços JSON.
-11. **Dozer** para converter qualquer tipo de objeto comparado pelos mesmos nomes de variaveis.
-12. **Heroku** Esse projeto está preparado para rodar em qualquer servidor Heroku.
+2.  **Spring Boot Test** para realizar  **Testes Integrados**.
+3.  **Junit** para realizar **Testes Unitários**.
+4.  **JavaEE-API** para validação das entradas do request.
+5.  **log4j** para logar erro caso tenha alguma exception.
+6.  **Jetty** container para roda a aplicação
+7.  **Java 8** línguagem de programação versão 8.
+8.  **Gradle** para gerenciamento de dependências.
+9.  **Design Pattern Strategy** padrão de desenvolvimento.
+10.  **Guava** para calcular o range e obter as propriedade.
+11. **Gson** para converter os serviços JSON.
+12. **Dozer** para converter qualquer tipo de objeto comparado pelos mesmos nomes de variaveis.
+13. **Heroku** Esse projeto está preparado para rodar em qualquer servidor Heroku.
 
 
 >_OBS:_ Esse projeto está funcionando no heroku, link para realizar testes:
