@@ -22,7 +22,7 @@
 
 * is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
-**Request Utilizando o Heroku**
+**Request para o ambiente Heroku**
 
 _Request para salvar uma nova propriedade:_
 ```javascript
@@ -39,7 +39,7 @@ _Request para obter propriedade definido por um range de coordenadas_
 curl -X GET -G 'http://spotippos-challenge.herokuapp.com/spotippos/properties' -d ax=0 -d ay=500 -d bx=600 -d by=1000
 ```
 
-**Request Local**
+**Request para o ambiente Local**
 
 _Request para salvar uma nova propriedade:_
 ```javascript
