@@ -2,8 +2,10 @@ package br.com.spotippos.challenge.rest;
 
 import br.com.spotippos.challenge.rest.request.PropertyRequest;
 import br.com.spotippos.challenge.rest.response.ErrorResponse;
+import br.com.spotippos.challenge.rest.response.PropertiesResponse;
 import br.com.spotippos.challenge.rest.response.PropertyResponse;
 import br.com.spotippos.challenge.service.SpotipposService;
+import br.com.spotippos.challenge.service.dto.PropertiesDTO;
 import br.com.spotippos.challenge.service.dto.PropertyDTO;
 import br.com.spotippos.challenge.utils.ConverterUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +57,7 @@ public class SpotipposRestController {
     @RequestMapping(
             value = "/properties/{id}",
             method = RequestMethod.GET,
-            produces = "application/json",
-            consumes = "application/json"
+            produces = "application/json"
     )
     public <Response> Response findPropertyByID(
             @PathVariable("id")
@@ -73,6 +74,32 @@ public class SpotipposRestController {
         }
 
         return  response;
+    }
+
+    @RequestMapping(
+            value = "/properties",
+            method = RequestMethod.GET,
+            produces = "application/json"
+    )
+    public <Response> Response findPropertiesByRange(
+            @RequestParam("xa")
+            long xa,
+            @RequestParam("ya")
+            long ya,
+            @RequestParam("xb")
+            long xb,
+            @RequestParam("yb")
+            long yb){
+
+        Response response;
+        try {
+            PropertiesDTO propertiesDTO = spotipposService.findPropertiesByRange(xa, ya, xb, yb);
+            response = (Response) ConverterUtils.convertTo(propertiesDTO, PropertiesResponse.class);
+        } catch (Exception e) {
+            response = (Response) new ErrorResponse(9999, "Não foi possível localizar nenhuma propriedade no intervalo solicitado.");
+        }
+
+        return response;
     }
 
 

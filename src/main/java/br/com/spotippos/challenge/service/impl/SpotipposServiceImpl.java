@@ -1,8 +1,11 @@
 package br.com.spotippos.challenge.service.impl;
 
 import br.com.spotippos.challenge.service.SpotipposService;
+import br.com.spotippos.challenge.service.dto.PropertiesDTO;
 import br.com.spotippos.challenge.service.dto.PropertyDTO;
 import br.com.spotippos.challenge.service.dto.ProvinceDTO;
+import br.com.spotippos.challenge.utils.SpotipposUtils;
+import com.google.common.collect.Range;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Singleton;
@@ -74,6 +77,19 @@ public class SpotipposServiceImpl implements SpotipposService {
         return properties.isEmpty() ? 1 : properties.get(properties.size() - 1).getId() + 1;
     }
 
+    @Override
+    public PropertiesDTO findPropertiesByRange(final long xa, final long ya, final long xb, final long yb){
+        Range<Long> rangeX = SpotipposUtils.setRange(xa, xb);
+        Range<Long> rangeY = SpotipposUtils.setRange(ya, yb);
+
+        List<PropertyDTO> properties = this.properties.stream()
+                .filter(p -> rangeX.contains(p.getX()) && rangeY.contains(p.getY()))
+                .collect(Collectors.toList());
+
+        int foundProperties = properties.size();
+
+        return new PropertiesDTO(foundProperties, properties);
+    }
 
 
 

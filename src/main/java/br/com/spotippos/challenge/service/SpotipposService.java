@@ -1,5 +1,6 @@
 package br.com.spotippos.challenge.service;
 
+import br.com.spotippos.challenge.service.dto.PropertiesDTO;
 import br.com.spotippos.challenge.service.dto.PropertyDTO;
 import br.com.spotippos.challenge.service.dto.ProvinceDTO;
 
@@ -21,4 +22,6 @@ public interface SpotipposService extends Serializable{
     ProvinceDTO saveProvince(ProvinceDTO province);
 
     List<ProvinceDTO> getAllProvinces();
+
+    PropertiesDTO findPropertiesByRange(long xa, long ya, long xb, long yb);
 }
