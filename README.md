@@ -40,8 +40,3 @@ _Request para obter propriedade definido por um range de coordenadas_
 ```javascript
 curl -X GET -G 'http://spotippos-challenge.herokuapp.com/spotippos/properties' -d ax=0 -d ay=500 -d bx=600 -d by=1000
 ```
-
-**Response**
-```javascript
-
-```
