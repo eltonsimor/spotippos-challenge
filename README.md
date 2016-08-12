@@ -1,8 +1,8 @@
 #Desafio Spotippos
 
 ### Tecnologias Utilizadas:
-1.  **Junit** para realizar testes unitários da aplicação.
-2.  **Spring Boot** utilizei essa tecnologia para criação dos serviços **json**.
+1.  **Spring Boot** utilizei essa tecnologia para criação dos serviços **json**.
+2.  **Junit** para realizar **Testes Unitários** da aplicação e **Testes Integrados**.
 3.  **JavaEE-API** para validação das entradas do request.
 4.  **log4j** para logar erro caso tenha alguma exception.
 5.  **Jetty** container para roda a aplicação
