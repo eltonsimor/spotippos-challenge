@@ -30,20 +30,20 @@
 
 #### Após realizar o pré-requisito vamos seguir o passo-a-passo
 
-_* 1) realizar o clone do projeto._
-´´´javascript
+* 1) realizar o clone do projeto.
+```javascript
     git clone https://github.com/eltonsimor/spotippos-challenge.git
-´´´
+```
 
-_* 2) Acessar a raíz do projeto e executar o comando:_
-´´´javascript
+* 2) Acessar a raíz do projeto e executar o comando:
+```javascript
     gradle build
-´´´
+```
 
-_* 3) Após a finalização do build, executar o comando:_
-´´´javascript
+* 3) Após a finalização do build, executar o comando:
+```javascript
     java -jar build\libs\spotippos-challenge-1.0.0.jar
-´´´
+```
 
 >Pronto! Aplicação já pode ser utilizada! ;)
 
