@@ -3,7 +3,7 @@ package br.com.spotippos.challenge.utils;
 
 import com.google.common.collect.Range;
 
-import java.util.*;
+import java.util.Arrays;
 
 /**
  * Created by mtzcpd663 on 12/08/2016.

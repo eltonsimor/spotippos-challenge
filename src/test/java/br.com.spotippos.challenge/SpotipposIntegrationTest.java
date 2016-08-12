@@ -1,8 +1,6 @@
 package br.com.spotippos.challenge;
 
 import br.com.spotippos.challenge.config.Application;
-import br.com.spotippos.challenge.rest.response.PropertiesResponse;
-import br.com.spotippos.challenge.rest.response.PropertyResponse;
 import br.com.spotippos.challenge.service.dto.PropertiesDTO;
 import br.com.spotippos.challenge.service.dto.PropertyDTO;
 import br.com.spotippos.challenge.task.LoadDataTask;
@@ -18,8 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.*;
