@@ -38,7 +38,6 @@ public class SpotipposServiceImpl implements SpotipposService {
 
     @Override
     public PropertyDTO saveProperty(PropertyDTO property) throws SpotipposException{
-
         try {
             property.setId(getPropertyID());
             List<ProvinceDTO> provinces = findProvinces(property.getX(), property.getY());
@@ -54,7 +53,6 @@ public class SpotipposServiceImpl implements SpotipposService {
 
     @Override
     public List<ProvinceDTO> findProvinces(long x, long y) throws SpotipposException{
-
         try {
             List<ProvinceDTO> provinces = this.provinces.stream()
                     .filter(p ->

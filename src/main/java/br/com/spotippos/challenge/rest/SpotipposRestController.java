@@ -9,6 +9,7 @@ import br.com.spotippos.challenge.service.SpotipposService;
 import br.com.spotippos.challenge.service.dto.PropertiesDTO;
 import br.com.spotippos.challenge.service.dto.PropertyDTO;
 import br.com.spotippos.challenge.utils.ConverterUtils;
+import org.dozer.MappingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +53,9 @@ public class SpotipposRestController {
             PropertyDTO property = ConverterUtils.convertTo(rq, PropertyDTO.class);
             PropertyDTO dto = spotipposService.saveProperty(property);
             response = (Response) ConverterUtils.convertTo(dto, PropertyResponse.class);
-        } catch (SpotipposException e) {
-            String message = e.getMessage();
-            LOG.error(message, e);
-            response = (Response) new ErrorResponse(77777, message);
+        } catch (SpotipposException | MappingException e) {
+            LOG.error(e.getMessage(), e);
+            response = (Response) new ErrorResponse(77777, "Erro ao salvar a propriedade. Verifique o contrato do request.");
         }
 
         return response;
@@ -67,19 +67,18 @@ public class SpotipposRestController {
             produces = "application/json"
     )
     public <Response> Response findPropertyByID(
+            @Valid
             @PathVariable("id")
             @Min(value = 0, message = "{id.min}")
-            @NotNull(message = "{id.notnull}")
-            long id){
+            Integer id){
 
         Response response;
         try {
             PropertyDTO property = spotipposService.findPropertyByID(id);
             response = (Response) ConverterUtils.convertTo(property, PropertyResponse.class);
-        } catch (SpotipposException e) {
-            String message = e.getMessage();
-            LOG.error(message, e);
-            response = (Response) new ErrorResponse(8888, message);
+        } catch (SpotipposException | MappingException e) {
+            LOG.error(e.getMessage(), e);
+            response = (Response) new ErrorResponse(8888, "Não foi possível localizar a propriedade pelo o ID: " + id);
         }
 
         return  response;
@@ -91,35 +90,38 @@ public class SpotipposRestController {
             produces = "application/json"
     )
     public <Response> Response findPropertiesByRange(
+            @Valid
             @RequestParam("ax")
             @NotNull(message = "{ax.notnull}")
             @Min(value = 0, message = "{ax.min}")
             @Max(value = 1400, message = "{ax.max}")
-            long ax,
+            Integer ax,
+            @Valid
             @RequestParam("ay")
             @NotNull(message = "{ay.notnull}")
             @Min(value = 0, message = "{ay.min}")
             @Max(value = 1000, message = "{ay.max}")
-            long ay,
+            Integer ay,
+            @Valid
             @RequestParam("bx")
             @NotNull(message = "{bx.notnull}")
             @Min(value = 0, message = "{bx.min}")
             @Max(value = 1400, message = "{bx.max}")
-            long bx,
+            Integer bx,
+            @Valid
             @RequestParam("by")
             @NotNull(message = "{by.notnull}")
             @Min(value = 0, message = "{by.min}")
             @Max(value = 1000, message = "{by.max}")
-            long by){
+            Integer by){
 
         Response response;
         try {
             PropertiesDTO propertiesDTO = spotipposService.findPropertiesByRange(ax, ay, bx, by);
             response = (Response) ConverterUtils.convertTo(propertiesDTO, PropertiesResponse.class);
-        } catch (SpotipposException e) {
-            String message = e.getMessage();
-            LOG.error(message, e);
-            response = (Response) new ErrorResponse(9999, message);
+        } catch (SpotipposException | MappingException e) {
+            LOG.error(e.getMessage(), e);
+            response = (Response) new ErrorResponse(9999, "Não foi possível localizar nenhuma propriedade no intervalo solicitado.");
         }
 
         return response;
