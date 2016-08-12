@@ -13,7 +13,7 @@
 10.  **Guava** para calcular o range e obter as propriedade.
 11. **Gson** para converter os serviços JSON.
 12. **Dozer** para converter qualquer tipo de objeto comparado pelos mesmos nomes de variaveis.
-13. **Heroku** Esse projeto está preparado para rodar em qualquer servidor Heroku.
+13. **Heroku** Esse projeto está preparado para rodar nos servidor Heroku.
 
 
 >_OBS:_ Esse projeto está funcionando no heroku, link para realizar testes:
