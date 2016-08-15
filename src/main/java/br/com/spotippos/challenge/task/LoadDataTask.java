@@ -24,6 +24,7 @@ import java.util.Map;
  * @since 09/08/2016.
  */
 @Component
+@SuppressWarnings("unchecked")
 public class LoadDataTask {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoadDataTask.class);

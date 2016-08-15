@@ -28,6 +28,7 @@ import static org.junit.Assert.*;
  * @author Elton Moraes
  * @since 10/08/2016.
  */
+@SuppressWarnings("unchecked")
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {Application.class})
 public class SpotipposIntegrationTest {

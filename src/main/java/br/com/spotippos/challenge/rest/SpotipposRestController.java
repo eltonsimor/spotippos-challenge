@@ -26,6 +26,7 @@ import javax.validation.constraints.NotNull;
  * @since 04/08/2016.
  */
 @RestController
+@SuppressWarnings("unchecked")
 public class SpotipposRestController {
     private static final Logger LOG = LoggerFactory.getLogger(SpotipposRestController.class);
 
