@@ -1,7 +1,7 @@
 #Desafio Spotippos
 
 ## Tecnologias Utilizadas:
-1.  **Spring Boot** utilizei essa tecnologia para criação dos serviços **json**.
+1.  **Spring Boot** utilizei essa tecnologia para criação dos serviços **REST**.
 2.  **Spring Boot Test** para realizar  **Testes Integrados**.
 3.  **Junit** para realizar **Testes Unitários**.
 4.  **JavaEE-API** para validação das entradas do request.
@@ -11,7 +11,7 @@
 8.  **Gradle** para gerenciamento de dependências.
 9.  **Design Pattern Strategy** padrão de desenvolvimento.
 10.  **Guava** para calcular o range e obter as propriedade.
-11. **Gson** para converter os serviços JSON.
+11. **Gson** para converter os serviços REST.
 12. **Dozer** para converter qualquer tipo de objeto comparado pelos mesmos nomes de variaveis.
 13. **Heroku** Esse projeto está preparado para rodar nos servidores Heroku.
 
