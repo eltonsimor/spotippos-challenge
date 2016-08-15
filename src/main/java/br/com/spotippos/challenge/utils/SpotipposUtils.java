@@ -6,7 +6,8 @@ import com.google.common.collect.Range;
 import java.util.Arrays;
 
 /**
- * Created by mtzcpd663 on 12/08/2016.
+ * @author Elton Moraes
+ * @Since 12/08/2016.
  */
 public abstract class SpotipposUtils {
 
