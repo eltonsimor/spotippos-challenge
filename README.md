@@ -1,4 +1,4 @@
-#Desafio Spotippos
+#Spotippos
 
 ## Tecnologias Utilizadas:
 1.  **Spring Boot** utilizei essa tecnologia para criação dos serviços **REST**.
