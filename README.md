@@ -52,17 +52,17 @@
 
 _Request para salvar uma nova propriedade:_
 ```javascript
-echo '{ "x": 222, "y": 444, "title": "Imóvel código 1, com 5 quartos e 4 banheiros", "price": 1250000,  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",  "beds": 4,  "baths": 3,  "squareMeters": 210}' | curl -X POST -d @- http://spotippos-challenge.herokuapp.com/spotippos/properties --header "Content-Type:application/json"
+echo '{ "x": 222, "y": 444, "title": "Imóvel código 1, com 5 quartos e 4 banheiros", "price": 1250000,  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",  "beds": 4,  "baths": 3,  "squareMeters": 210}' | curl -X POST -d @- http://eltonmoraes.herokuapp.com/spotippos/properties --header "Content-Type:application/json"
 ```
 
 _Request para obter uma propriedade pelo ID:_
 ```javascript
-curl -X GET http://spotippos-challenge.herokuapp.com/spotippos/properties/2000 --header "Content-Type:application/json"
+curl -X GET http://eltonmoraes.herokuapp.com/spotippos/properties/2000 --header "Content-Type:application/json"
 ```
 
 _Request para obter propriedade definido por um range de coordenadas_
 ```javascript
-curl -X GET -G 'http://spotippos-challenge.herokuapp.com/spotippos/properties' -d ax=0 -d ay=500 -d bx=600 -d by=1000
+curl -X GET -G 'http://eltonmoraes.herokuapp.com/spotippos/properties' -d ax=0 -d ay=500 -d bx=600 -d by=1000
 ```
 
 **Request para o ambiente Local**
